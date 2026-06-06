@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="CVR Summer School 2026 undergraduate tutorial navigator for psychophysics, artificial neural networks, Google Colab notebooks, jsPsych tasks, images, and data.">
-  <title>CVR Summer School 2026 | Tutorial Navigator</title>
+  <meta name="description" content="CVR Summer School 2026 student tutorial navigator for psychophysics, artificial neural networks, Google Colab notebooks, browser experiments, images, and data.">
+  <title>CVR Summer School 2026 | Student Tutorial Hub</title>
   <link rel="stylesheet" href="assets/cvr-pages.css">
   <script defer src="assets/cvr-pages.js"></script>
 </head>
@@ -14,77 +14,69 @@
       <a class="brand" href="index.html" aria-label="CVR Summer School home"><span class="brand-mark">CVR</span><span>Summer School 2026</span></a>
       <nav class="navlinks" aria-label="Main navigation">
         <a href="#start">Start</a>
-        <a href="#psychophysics">Psychophysics</a>
+        <a href="#psychophysics">Experiments</a>
         <a href="#anns">ANNs</a>
         <a href="#notebooks">Colab notebooks</a>
-        <a href="#github-pages">GitHub Pages setup</a>
+        <a href="#resources">Resources</a>
       </nav>
     </div>
 
     <section class="hero" aria-labelledby="title">
       <div class="hero-card">
-        <span class="eyebrow">Undergraduate tutorial hub</span>
+        <span class="eyebrow">Student tutorial hub</span>
         <h1 id="title">Build experiments, analyze behavior, and test artificial neural networks.</h1>
-        <p class="subtitle">A polished GitHub Pages entry point for the CVR Summer School 2026 materials. Students can run browser-based psychophysics tasks, open tutorials, download example data, and launch notebooks directly in Google Colab.</p>
+        <p class="subtitle">Welcome to the CVR Summer School 2026 tutorial site. Use this page to move through the workshop materials, run browser-based psychophysics tasks, launch notebooks in Google Colab, and find the example images and data used throughout the tutorials.</p>
         <div class="hero-actions">
-          <a class="button primary" href="psychophysics/tutorial.html">Open psychophysics tutorial</a>
-          <a class="button primary" href="anns/tutorial.html">Open ANN tutorial</a>
-          <a class="button colab" data-colab-path="manipulate_stimuli.ipynb">Launch first notebook in Colab</a>
-          <a class="button" href="README.md">Repository README</a>
+          <a class="button primary" href="psychophysics/tutorial.html">Start psychophysics tutorial</a>
+          <a class="button primary" href="anns/tutorial.html">Start ANN tutorial</a>
+          <a class="button colab" data-colab-path="manipulate_stimuli.ipynb">Open first Colab notebook</a>
         </div>
       </div>
-      <aside class="status-card" aria-label="Repository status">
-        <h2 style="font-size:1.35rem;margin-bottom:8px;">What is included?</h2>
-        <div class="stat"><span class="dot"></span><div><strong>4 browser experiments</strong><span>Object 2AFC, drawing 2AFC, ratings, and N-back tasks built with jsPsych.</span></div></div>
-        <div class="stat"><span class="dot"></span><div><strong>14 Colab-ready notebooks</strong><span>Stimulus manipulation, data extraction, model testing, and human-vs-ANN comparison.</span></div></div>
-        <div class="stat"><span class="dot"></span><div><strong>Example images and data</strong><span>Small self-contained assets so students can test the full workflow quickly.</span></div></div>
-        <div class="stat"><span class="dot"></span><div><strong>GitHub Pages-ready</strong><span>Static site files are served directly from the repository root.</span></div></div>
+      <aside class="status-card" aria-label="What you can do on this site">
+        <h2 style="font-size:1.35rem;margin-bottom:8px;">What you will do</h2>
+        <div class="stat"><span class="dot"></span><div><strong>Run 4 browser experiments</strong><span>Object 2AFC, drawing 2AFC, image ratings, and N-back memory tasks.</span></div></div>
+        <div class="stat"><span class="dot"></span><div><strong>Use Colab notebooks</strong><span>Open notebooks directly in the browser; no local Python installation is required.</span></div></div>
+        <div class="stat"><span class="dot"></span><div><strong>Analyze example data</strong><span>Work with sample behavioral CSV files and model outputs.</span></div></div>
+        <div class="stat"><span class="dot"></span><div><strong>Compare humans and models</strong><span>Connect psychophysics results to artificial neural network predictions.</span></div></div>
       </aside>
     </section>
 
     <section id="start">
-      <div class="section-head"><h2>Suggested student route</h2><p class="muted">A simple path through the material during the workshop.</p></div>
+      <div class="section-head"><h2>Suggested route through the tutorial</h2><p class="muted">Follow this path during the workshop unless your instructor directs you to a specific section.</p></div>
       <div class="workflow">
-        <div class="step"><h3>Open this page</h3><p>Use this hub to decide which tutorial, task, notebook, or data file to open next.</p></div>
-        <div class="step"><h3>Run a task</h3><p>Try one jsPsych experiment in the browser and download the CSV that it produces.</p></div>
-        <div class="step"><h3>Extract data</h3><p>Use the matching extraction notebook to convert raw jsPsych output into tidy rows.</p></div>
-        <div class="step"><h3>Test an ANN</h3><p>Open a model notebook in Colab and generate model responses for the same task.</p></div>
-        <div class="step"><h3>Compare</h3><p>Use the comparison notebook to relate human behavioral data to ANN outputs.</p></div>
+        <div class="step"><h3>1. Read the overview</h3><p>Start with the psychophysics tutorial to understand the tasks and the structure of the experiment files.</p></div>
+        <div class="step"><h3>2. Try an experiment</h3><p>Run one jsPsych task in your browser and download the CSV file produced at the end.</p></div>
+        <div class="step"><h3>3. Clean the data</h3><p>Open the matching extraction notebook in Colab and convert raw task output into tidy data.</p></div>
+        <div class="step"><h3>4. Test a model</h3><p>Use an ANN notebook to generate model responses for the same kind of task.</p></div>
+        <div class="step"><h3>5. Compare results</h3><p>Use the comparison notebook to relate human behavioral patterns to model outputs.</p></div>
       </div>
     </section>
 
     <section id="psychophysics">
-      <div class="section-head"><h2>Psychophysics tasks</h2><p class="muted">Run these directly in the browser through GitHub Pages.</p></div>
+      <div class="section-head"><h2>Psychophysics experiments</h2><p class="muted">These tasks run directly in your browser. At the end of a task, save the downloaded CSV file.</p></div>
       <div class="grid four">
-        <article class="card"><span class="tag green">2AFC</span><h3>Object recognition</h3><p>Participants view an image and choose between two object labels.</p><div class="links"><a class="pill" href="psychophysics/tasks/obj_2afc.html">Open task <span>↗</span></a></div></article>
-        <article class="card"><span class="tag green">2AFC</span><h3>Drawing recognition</h3><p>Participants view a drawing and choose between two labels.</p><div class="links"><a class="pill" href="psychophysics/tasks/draw_2afc.html">Open task <span>↗</span></a></div></article>
-        <article class="card"><span class="tag violet">Rating</span><h3>Slider ratings</h3><p>Participants rate each image on a continuous slider.</p><div class="links"><a class="pill" href="psychophysics/tasks/ratings.html">Open task <span>↗</span></a></div></article>
-        <article class="card"><span class="tag amber">Memory</span><h3>N-back</h3><p>Participants decide whether each image is novel or repeated.</p><div class="links"><a class="pill" href="psychophysics/tasks/n_back.html">Open task <span>↗</span></a></div></article>
+        <article class="card"><span class="tag green">2AFC</span><h3>Object recognition</h3><p>View an image and choose between two object labels.</p><div class="links"><a class="pill" href="psychophysics/tasks/obj_2afc.html">Open task <span>↗</span></a></div></article>
+        <article class="card"><span class="tag green">2AFC</span><h3>Drawing recognition</h3><p>View a drawing and choose between two possible labels.</p><div class="links"><a class="pill" href="psychophysics/tasks/draw_2afc.html">Open task <span>↗</span></a></div></article>
+        <article class="card"><span class="tag violet">Rating</span><h3>Image ratings</h3><p>Rate each image on a continuous slider.</p><div class="links"><a class="pill" href="psychophysics/tasks/ratings.html">Open task <span>↗</span></a></div></article>
+        <article class="card"><span class="tag amber">Memory</span><h3>N-back</h3><p>Decide whether each image is novel or repeated.</p><div class="links"><a class="pill" href="psychophysics/tasks/n_back.html">Open task <span>↗</span></a></div></article>
       </div>
       <div class="grid two" style="margin-top:16px;">
-        <div class="card"><h3>Learn how the tasks work</h3><p>The psychophysics tutorial explains the structure of each experiment, where students should edit stimulus lists, and how saved CSV files are interpreted.</p><div class="links"><a class="pill" href="psychophysics/tutorial.html">psychophysics/tutorial.html <span>open</span></a><a class="pill" href="psychophysics/readme.md">psychophysics/readme.md <span>read</span></a></div></div>
-        <div class="card"><h3>Metadata examples</h3><p>Use these CSV templates when creating new stimulus lists for 2AFC, rating, or N-back experiments.</p><div class="links"><a class="pill" href="psychophysics/examples_metadata_files/README_metadata_tests.md">examples_metadata_files <span>open</span></a></div></div>
+        <div class="card"><h3>Psychophysics tutorial</h3><p>Learn how the experiments are organized, how stimulus metadata are used, and how saved CSV files are interpreted.</p><div class="links"><a class="pill" href="psychophysics/tutorial.html">Open tutorial <span>↗</span></a></div></div>
+        <div class="card"><h3>Task templates</h3><p>Use the metadata examples when creating or editing stimulus lists for 2AFC, rating, or N-back experiments.</p><div class="links"><a class="pill" href="psychophysics/examples_metadata_files/README_metadata_tests.md">Open metadata guide <span>↗</span></a></div></div>
       </div>
     </section>
 
     <section id="anns">
       <div class="section-head"><h2>Artificial neural network tutorials</h2><p class="muted">Use the same stimuli and task logic to test models like experimental subjects.</p></div>
       <div class="grid two">
-        <article class="card"><span class="tag violet">Tutorial</span><h3>ANN tutorial page</h3><p>Start here for the model workflow: load images, run a model, collect outputs, and compare against behavior.</p><div class="links"><a class="pill" href="anns/tutorial.html">anns/tutorial.html <span>open</span></a><a class="pill" href="anns/readme.md">anns/readme.md <span>read</span></a></div></article>
-        <article class="card"><span class="tag">Shared code</span><h3>Utilities and output examples</h3><p>The ANN notebooks use shared helper code and write CSV outputs into the results folder.</p><div class="links"><a class="pill" href="anns/utils.py">anns/utils.py <span>view</span></a><a class="pill" href="anns/results/obj_2afc.csv">anns/results/ <span>CSV</span></a></div></article>
+        <article class="card"><span class="tag violet">Tutorial</span><h3>ANN tutorial</h3><p>Start here for the model workflow: load images, run a model, collect outputs, and compare against behavior.</p><div class="links"><a class="pill" href="anns/tutorial.html">Open tutorial <span>↗</span></a></div></article>
+        <article class="card"><span class="tag">Outputs</span><h3>Example model results</h3><p>Open example model output CSV files that can be compared with human behavioral data.</p><div class="links"><a class="pill" href="anns/results/obj_2afc.csv">Object 2AFC CSV <span>↗</span></a><a class="pill" href="anns/results/ratings.csv">Ratings CSV <span>↗</span></a></div></article>
       </div>
     </section>
 
     <section id="notebooks">
-      <div class="section-head"><h2>Colab notebook launcher</h2><p class="muted">Each notebook remains in its original location. The buttons open the notebook in Google Colab.</p></div>
-      <div class="callout" style="margin-bottom:14px;"><strong>Automatic Colab links:</strong> once this repo is hosted on GitHub Pages, the page infers <code><span data-repo-name></span></code> from the URL. For local testing or a private preview, set the repository below.</div>
-      <form class="repo-box card" data-repo-form>
-        <label class="muted" for="repo" style="font-weight:800;">GitHub repo</label>
-        <input id="repo" name="repo" aria-label="GitHub repository in owner/repo format" placeholder="owner/repo">
-        <label class="muted" for="branch" style="font-weight:800;">Branch</label>
-        <input id="branch" name="branch" aria-label="GitHub branch" placeholder="main" style="max-width:120px;">
-        <button class="button dark" type="submit">Update links</button>
-      </form>
+      <div class="section-head"><h2>Colab notebook launcher</h2><p class="muted">Click a button to open the notebook in Google Colab. Sign into Google so you can save your own copy.</p></div>
+      <div class="callout" style="margin-bottom:14px;"><strong>Tip:</strong> in Colab, use <strong>File → Save a copy in Drive</strong> before making changes. This keeps your work separate from the shared tutorial version.</div>
       <div class="table-wrap" style="margin-top:16px;">
         <table>
           <thead><tr><th>Topic</th><th>Notebook</th><th>Open</th><th>Use it for</th></tr></thead>
@@ -108,27 +100,19 @@
       </div>
     </section>
 
-    <section id="files">
-      <div class="section-head"><h2>Repository map</h2><p class="muted">Where students should look for each type of file.</p></div>
+    <section id="resources">
+      <div class="section-head"><h2>Useful resources</h2><p class="muted">Quick access to the files students will use most often.</p></div>
       <div class="grid">
-        <div class="card"><span class="tag green">Experiments</span><h3><code>psychophysics/tasks/</code></h3><p>Editable browser tasks. Students usually change the arrays inside the clearly marked edit section.</p></div>
-        <div class="card"><span class="tag violet">Notebooks</span><h3><code>psychophysics/</code> and <code>anns/</code></h3><p>Analysis and model notebooks. Open them through the Colab buttons above.</p></div>
-        <div class="card"><span class="tag">Images</span><h3><code>images/</code></h3><p>Stimuli and label images used by the tasks and notebooks.</p></div>
-        <div class="card"><span class="tag amber">Data</span><h3><code>psychophysics/data/</code></h3><p>Example raw and extracted human behavioral CSV files.</p></div>
-        <div class="card"><span class="tag amber">ANN outputs</span><h3><code>anns/results/</code></h3><p>Example model output files that can be compared with human results.</p></div>
-        <div class="card"><span class="tag">Docs</span><h3><code>README.md</code></h3><p>Repository overview and GitHub Pages setup notes for instructors.</p></div>
+        <div class="card"><span class="tag green">Experiments</span><h3>Browser tasks</h3><p>Run the object, drawing, rating, and memory tasks directly from the links above.</p><div class="links"><a class="pill" href="psychophysics/tasks/obj_2afc.html">Object task</a><a class="pill" href="psychophysics/tasks/ratings.html">Rating task</a></div></div>
+        <div class="card"><span class="tag violet">Notebooks</span><h3>Analysis and model notebooks</h3><p>Use the Colab launcher to open notebooks without installing Python locally.</p><div class="links"><a class="pill" href="#notebooks">Go to notebooks</a></div></div>
+        <div class="card"><span class="tag">Images</span><h3>Stimulus images</h3><p>Example images used by the tasks and notebooks.</p><div class="links"><a class="pill" href="images/ratings/im0.jpg">View example image</a></div></div>
+        <div class="card"><span class="tag amber">Human data</span><h3>Example behavioral CSVs</h3><p>Sample data files for practicing extraction and analysis.</p><div class="links"><a class="pill" href="psychophysics/data/example_data_2afc.csv">Example 2AFC data</a><a class="pill" href="psychophysics/data/all_data_ratings.csv">Ratings data</a></div></div>
+        <div class="card"><span class="tag amber">Model data</span><h3>Example ANN CSVs</h3><p>Model output files used in the human-vs-ANN comparison workflow.</p><div class="links"><a class="pill" href="anns/results/example_model_obj_2afc.csv">Example model data</a></div></div>
+        <div class="card"><span class="tag">Help</span><h3>Stuck?</h3><p>Ask an instructor or teaching assistant. Include the page, task, or notebook name you were using and any error message you saw.</p></div>
       </div>
     </section>
 
-    <section id="github-pages">
-      <div class="section-head"><h2>GitHub Pages setup</h2><p class="muted">Use this when creating the new public repository.</p></div>
-      <div class="grid two">
-        <div class="card"><h3>Recommended setup</h3><ol><li>Create a new GitHub repository, for example <code>cvr-summer-school-2026</code>.</li><li>Upload all files from this folder to the repository root.</li><li>Go to <strong>Settings → Pages</strong>.</li><li>Choose <strong>GitHub Actions</strong> as the source, or deploy from the <code>main</code> branch root.</li><li>Open the published Pages URL and test each task and Colab button.</li></ol></div>
-        <div class="card"><h3>Instructor checklist</h3><ul><li>Confirm the repo branch is named <code>main</code>, or update the branch field in the launcher.</li><li>Keep the folder names unchanged so relative image paths keep working.</li><li>Tell students to sign into Google before launching Colab notebooks.</li><li>Ask students to download their jsPsych CSV at the end of each task.</li></ul></div>
-      </div>
-    </section>
-
-    <footer class="footer">Centre for Vision Research, York University · CVR Summer School 2026 · Organized by Kohitij Kar, Robert Alison, Eline Kupers, Richard Murray, and Irit Printz · Teaching assistants: Sabine Muzellec and Xue Teng</footer>
+    <footer class="footer">Centre for Vision Research · Summer School 2026 · Student tutorial site</footer>
   </main>
 </body>
 </html>
