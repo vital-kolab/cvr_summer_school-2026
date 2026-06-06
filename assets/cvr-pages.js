@@ -13,22 +13,22 @@
   Leave a value blank ("") to keep using the local GitHub repo notebook fallback.
 */
 window.CVR_COLAB_DRIVE_LINKS = window.CVR_COLAB_DRIVE_LINKS || {
-  "anns/AlexNet_demo.ipynb": "",
-  "anns/Facial_emotion.ipynb": "",
-  "anns/obj_2afc.ipynb": "",
-  "anns/draw_2afc.ipynb": "",
-  "anns/ratings.ipynb": "",
-  "anns/n_back.ipynb": "",
+  "anns/AlexNet_demo.ipynb": "https://drive.google.com/file/d/1pGhrMRszBNW34BIqI0_YSBTSNXvnPZsl/view?usp=sharing",
+  "anns/Facial_emotion.ipynb": "https://drive.google.com/file/d/1cg_aUZ9I1sgl4imIbgDy-3hSStw1MvRa/view?usp=sharing",
+  "anns/obj_2afc.ipynb": "https://drive.google.com/file/d/1U-ui9hDuzatQeQuf8hB-ZomqCc0Bvz0D/view?usp=sharing",
+  "anns/draw_2afc.ipynb": "https://drive.google.com/file/d/17oQTOm9gJ3DDdR1utxsrn-1RYgvEHHHu/view?usp=sharing",
+  "anns/ratings.ipynb": "https://drive.google.com/file/d/1JvDEt_TcaN8RW8X5LUJiscjDmHoXTQCz/view?usp=sharing",
+  "anns/n_back.ipynb": "https://drive.google.com/file/d/1r-b1NQ7w7S-oqUl8V0Zmscgu9mBav_PB/view?usp=sharing",
 
-  "psychophysics/extract_2afc_results.ipynb": "",
-  "psychophysics/extract_ratings.ipynb": "",
-  "psychophysics/extract_n_back_results.ipynb": "",
-  "psychophysics/make_2afc_html_lines.ipynb": "",
-  "psychophysics/make_ratings_html_lines.ipynb": "",
-  "psychophysics/make_n_back_html_lines.ipynb": "",
+  "psychophysics/extract_2afc_results.ipynb": "https://drive.google.com/file/d/1wetYknkAiT1jlh92UvDdxQrSLl4am2ba/view?usp=sharing",
+  "psychophysics/extract_ratings.ipynb": "https://drive.google.com/file/d/1zeyIjglf6AMHv-Qr-dNmgNQjysabscgB/view?usp=sharing",
+  "psychophysics/extract_n_back_results.ipynb": "https://drive.google.com/file/d/1M0McgFKeo7D87mYngfRjWh7wR_rYCi5-/view?usp=sharing",
+  "psychophysics/make_2afc_html_lines.ipynb": "https://drive.google.com/file/d/1RyN8_8ZQlqmB0QG_UoV6gSO-meq9VUo1/view?usp=sharing",
+  "psychophysics/make_ratings_html_lines.ipynb": "https://drive.google.com/file/d/1KDt2_sK0vGo9Hn1o03sNZfmI-I8x3vUz/view?usp=sharing",
+  "psychophysics/make_n_back_html_lines.ipynb": "https://drive.google.com/file/d/19DN10ZQJk3fAJT46wNe1nkMkmZePILpH/view?usp=sharing",
 
-  "manipulate_stimuli.ipynb": "",
-  "compare_humans_vs_anns.ipynb": ""
+  "manipulate_stimuli.ipynb": "https://colab.research.google.com/drive/1ne1pm9dUGDI3A2uxQDes05BnSuj1NbSu?usp=sharing",
+  "compare_humans_vs_anns.ipynb": "https://colab.research.google.com/drive/1INIq7Z4s79Gtezc1V4LebitQXl9kXTyT?usp=sharing"
 };
 
 // Optional: paste your shared Drive folder URL here if you want to show/use it elsewhere.
