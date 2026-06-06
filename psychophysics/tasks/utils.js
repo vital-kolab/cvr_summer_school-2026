@@ -99,5 +99,19 @@ var survey = {
     ],
 };
 
+var end_screen = {
+    type: 'html-button-response',
+    stimulus: `
+        <div style="font-size: 22px; text-align: center; max-width: 800px; margin: auto;">
+            <p><strong>Thank you!</strong></p>
+            <p>You have completed the task.</p>
+            <p>Please save the csv file.</p>
+            <p>You may then press Esc to exit the full screen and close the window.</p>
+        </div>
+    `,
+    choices: ['FINISH'],
+    prompt: ""
+};
+
 // Define turkInfo
 var turkInfo = jsPsych.turk.turkInfo();
