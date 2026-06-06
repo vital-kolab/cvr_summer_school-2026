@@ -1,0 +1,6 @@
+source_file,subject_id,rt,stimulus,image_idx,slider_start,rating
+ratings_481520.csv,481520,3205.800000011921,../../images/ratings/im7.jpg,7,1,4
+ratings_481520.csv,481520,1289.800000011921,../../images/ratings/im2.jpg,2,1,3
+ratings_481520.csv,481520,1823.5,../../images/ratings/im15.jpg,15,1,2
+ratings_481520.csv,481520,2103.0,../../images/ratings/im0.jpg,0,3,2
+ratings_481520.csv,481520,2660.7000000476837,../../images/ratings/im18.jpg,18,4,3

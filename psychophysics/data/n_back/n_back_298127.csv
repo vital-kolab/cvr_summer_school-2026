@@ -1,0 +1,51 @@
+"success","timeout","failed_images","failed_audio","failed_video","trial_type","trial_index","time_elapsed","internal_node_id","rt","stimulus","response","question_order","image_index","correct_response","correct"
+"true","false","[]","[]","[]","preload","0","7","0.0-0.0","","","","","","",""
+"true","","","","","fullscreen","1","2091","0.0-1.0","","","","","","",""
+"","","","","","html-button-response","2","2974","0.0-2.0","881"," <p>This task is part of a York University research project. Taking part is your choice.</p> 
+                <p>We do not collect your name. We save your responses and the time when you completed the task.</p>
+                <p>The results may be used in talks, papers, or future analyses.</p>
+                    <p>By clicking SUBMIT, you confirm that:</p>
+                <ul>
+                    <li>You are between 18 to 45 years of age,</li>
+                    <li>You do not have uncorrected vision problems,</li>
+                    <li>You have never had a seizure,</li>
+                    <li>You have never been diagnosed with a neurological disorder,</li>
+                    <li>You agree to complete this task voluntarily.</li>
+                </ul>","0","","","",""
+"","","","","","html-button-response","3","3622","0.0-3.0","646.6999999880791"," <p>Please close other tabs or programs while running this task. This helps the task run smoothly.</p> 
+                <p>Please read the instructions carefully.</p>
+                <p>You will look at images and click responses. The task usually takes 5 to 10 minutes.</p>
+                <p>If this task could make you uncomfortable, please do not continue.</p>
+                </ul>","0","","","",""
+"","","","","","survey-multi-choice","4","5424","0.0-4.0","1800.5","","{""Age"":""26-30"",""Gender"":""Female""}","[0,1]","","",""
+"","","","","","html-keyboard-response","5","7038","0.0-5.0","1612.7000000476837","<div style=""font-size:22px;""><p><strong>Welcome!</strong></p><p>In this task, you will see images one at a time.</p><p>Click <strong>Novel</strong> if you have not seen the image before in this experiment.</p><p>Click <strong>Repeated</strong> if you have already seen the image before in this experiment.</p><p>Please look at the center <strong>+</strong> before each image appears.</p><p>Press any key to begin.</p></div>"," ","","","",""
+"","","","","","html-keyboard-response","6","7540","0.0-6.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","7","8855","0.0-7.0","1312.800000011921","../../images/n_back/im161.png","0","","0","0","true"
+"","","","","","html-keyboard-response","8","9357","0.0-8.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","9","9878","0.0-9.0","520.1999999880791","../../images/n_back/im161.png","1","","1","1","true"
+"","","","","","html-keyboard-response","10","10379","0.0-10.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","11","10862","0.0-11.0","481.30000001192093","../../images/n_back/im115.png","0","","2","0","true"
+"","","","","","html-keyboard-response","12","11363","0.0-12.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","13","11711","0.0-13.0","346.60000002384186","../../images/n_back/im123.png","0","","3","0","true"
+"","","","","","html-keyboard-response","14","12213","0.0-14.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","15","12528","0.0-15.0","313.60000002384186","../../images/n_back/im66.png","0","","4","0","true"
+"","","","","","html-keyboard-response","16","13030","0.0-16.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","17","13555","0.0-17.0","523.6000000238419","../../images/n_back/im153.png","0","","5","0","true"
+"","","","","","html-keyboard-response","18","14056","0.0-18.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","19","14695","0.0-19.0","637.1999999880791","../../images/n_back/im31.png","0","","6","0","true"
+"","","","","","html-keyboard-response","20","15196","0.0-20.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","21","15690","0.0-21.0","492.5","../../images/n_back/im47.png","0","","7","0","true"
+"","","","","","html-keyboard-response","22","16191","0.0-22.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","23","16795","0.0-23.0","602.3999999761581","../../images/n_back/im26.png","1","","8","0","false"
+"","","","","","html-keyboard-response","24","17296","0.0-24.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","25","17762","0.0-25.0","464","../../images/n_back/im128.png","0","","9","0","true"
+"","","","","","html-keyboard-response","26","18263","0.0-26.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","27","18805","0.0-27.0","540.3000000119209","../../images/n_back/im96.png","0","","10","0","true"
+"","","","","","html-keyboard-response","28","19306","0.0-28.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","29","19905","0.0-29.0","596.7999999523163","../../images/n_back/im32.png","0","","11","0","true"
+"","","","","","html-keyboard-response","30","20406","0.0-30.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","31","21045","0.0-31.0","637.2999999523163","../../images/n_back/im115.png","1","","12","1","true"
+"","","","","","html-keyboard-response","32","21546","0.0-32.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","33","22239","0.0-33.0","691.1999999880791","../../images/n_back/im120.png","0","","13","0","true"
+"","","","","","html-keyboard-response","34","22741","0.0-34.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","35","23272","0.0-35.0","530.4000000357628","../../images/n_back/im22.png","0","","14","0","true"

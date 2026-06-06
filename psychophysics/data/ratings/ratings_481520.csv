@@ -1,0 +1,46 @@
+"success","timeout","failed_images","failed_audio","failed_video","trial_type","trial_index","time_elapsed","internal_node_id","rt","stimulus","response","question_order","slider_start"
+"true","false","[]","[]","[]","preload","0","9","0.0-0.0","","","","",""
+"true","","","","","fullscreen","1","2259","0.0-1.0","","","","",""
+"","","","","","html-button-response","2","3156","0.0-2.0","895.3000000119209"," <p>This task is part of a York University research project. Taking part is your choice.</p> 
+                <p>We do not collect your name. We save your responses and the time when you completed the task.</p>
+                <p>The results may be used in talks, papers, or future analyses.</p>
+                    <p>By clicking SUBMIT, you confirm that:</p>
+                <ul>
+                    <li>You are between 18 to 45 years of age,</li>
+                    <li>You do not have uncorrected vision problems,</li>
+                    <li>You have never had a seizure,</li>
+                    <li>You have never been diagnosed with a neurological disorder,</li>
+                    <li>You agree to complete this task voluntarily.</li>
+                </ul>","0","",""
+"","","","","","html-button-response","3","3884","0.0-3.0","726.8000000119209"," <p>Please close other tabs or programs while running this task. This helps the task run smoothly.</p> 
+                <p>Please read the instructions carefully.</p>
+                <p>You will look at images and click responses. The task usually takes 5 to 10 minutes.</p>
+                <p>If this task could make you uncomfortable, please do not continue.</p>
+                </ul>","0","",""
+"","","","","","survey-multi-choice","4","6124","0.0-4.0","2238.399999976158","","{""Age"":""26-30"",""Gender"":""Female""}","[0,1]",""
+"","","","","","html-keyboard-response","5","7074","0.0-5.0","949.4000000357628","<div style='font-size: 24px; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center;'><div style='display: block;'><span style='font-weight: bold;'>Welcome!</span><br><br>In this task, you will see one image. Then you will move a slider to give a rating from 1 to 5.<br><br>Please look at the center <span style='font-weight: bold;'>+</span> before each image appears.<br><br><span style='font-weight: bold;'>Press any key to begin.</span></div></div>"," ","",""
+"","","","","","html-keyboard-response","6","7576","0.0-6.0","null","<div style=""font-size: 60px;"">+</div>","null","",""
+"","","","","","image-button-response","7","7680","0.0-7.0","null","../../images/ratings/im7.jpg","null","",""
+"","","","","","html-keyboard-response","8","7783","0.0-8.0","null","","null","",""
+"","","","","","html-slider-response","9","10990","0.0-9.0","3205.800000011921","<p>Move the slider to give your rating.</p><p id='demo'></p>","4","","1"
+"","","","","","html-keyboard-response","10","11992","0.0-10.0","null","","null","",""
+"","","","","","html-keyboard-response","11","12494","0.0-11.0","null","<div style=""font-size: 60px;"">+</div>","null","",""
+"","","","","","image-button-response","12","12597","0.0-12.0","null","../../images/ratings/im2.jpg","null","",""
+"","","","","","html-keyboard-response","13","12699","0.0-13.0","null","","null","",""
+"","","","","","html-slider-response","14","13990","0.0-14.0","1289.800000011921","<p>Move the slider to give your rating.</p><p id='demo'></p>","3","","1"
+"","","","","","html-keyboard-response","15","14992","0.0-15.0","null","","null","",""
+"","","","","","html-keyboard-response","16","15493","0.0-16.0","null","<div style=""font-size: 60px;"">+</div>","null","",""
+"","","","","","image-button-response","17","15596","0.0-17.0","null","../../images/ratings/im15.jpg","null","",""
+"","","","","","html-keyboard-response","18","15698","0.0-18.0","null","","null","",""
+"","","","","","html-slider-response","19","17523","0.0-19.0","1823.5","<p>Move the slider to give your rating.</p><p id='demo'></p>","2","","1"
+"","","","","","html-keyboard-response","20","18525","0.0-20.0","null","","null","",""
+"","","","","","html-keyboard-response","21","19027","0.0-21.0","null","<div style=""font-size: 60px;"">+</div>","null","",""
+"","","","","","image-button-response","22","19129","0.0-22.0","null","../../images/ratings/im0.jpg","null","",""
+"","","","","","html-keyboard-response","23","19231","0.0-23.0","null","","null","",""
+"","","","","","html-slider-response","24","21336","0.0-24.0","2103","<p>Move the slider to give your rating.</p><p id='demo'></p>","2","","3"
+"","","","","","html-keyboard-response","25","22338","0.0-25.0","null","","null","",""
+"","","","","","html-keyboard-response","26","22839","0.0-26.0","null","<div style=""font-size: 60px;"">+</div>","null","",""
+"","","","","","image-button-response","27","22942","0.0-27.0","null","../../images/ratings/im18.jpg","null","",""
+"","","","","","html-keyboard-response","28","23044","0.0-28.0","null","","null","",""
+"","","","","","html-slider-response","29","25706","0.0-29.0","2660.7000000476837","<p>Move the slider to give your rating.</p><p id='demo'></p>","3","","4"
+"","","","","","html-keyboard-response","30","26708","0.0-30.0","null","","null","",""

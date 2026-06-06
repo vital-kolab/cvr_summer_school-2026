@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Behavioral Experiment Tutorial</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<style>
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    margin: 0;
+    background: #0f172a;
+    color: #e2e8f0;
+}
+header {
+    background: linear-gradient(135deg, #3b82f6, #9333ea);
+    padding: 60px 30px;
+    text-align: center;
+}
+header h1 {
+    margin-bottom: 10px;
+}
+.container {
+    max-width: 1050px;
+    margin: auto;
+    padding: 30px;
+}
+.card {
+    background: #1e293b;
+    padding: 24px;
+    border-radius: 14px;
+    margin-top: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+pre.code {
+    background: #0b1020;
+    border: 1px solid #334155;
+    padding: 18px;
+    border-radius: 10px;
+    font-family: "Fira Code", monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-x: auto;
+    white-space: pre;
+}
+.explain {
+    margin-top: 12px;
+    line-height: 1.6;
+}
+.diagram {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+.box {
+    flex: 1 1 135px;
+    min-width: 135px;
+    padding: 16px 12px;
+    text-align: center;
+    background: #334155;
+    border-radius: 10px;
+    border: 1px solid #475569;
+}
+.box strong {
+    display: block;
+    color: #bfdbfe;
+    margin-bottom: 6px;
+}
+.arrow {
+    align-self: center;
+    color: #93c5fd;
+    font-size: 22px;
+}
+h2 {
+    color: #93c5fd;
+}
+h3 {
+    color: #c4b5fd;
+    margin-top: 24px;
+}
+.component-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 18px;
+}
+.component {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 18px;
+}
+.component .icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+.component h3 {
+    margin: 0 0 8px 0;
+    color: #bfdbfe;
+}
+.component p {
+    margin: 0;
+    line-height: 1.55;
+}
+.tag {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: #334155;
+    color: #e0f2fe;
+    font-size: 13px;
+}
+.note {
+    background: #172554;
+    border-left: 4px solid #60a5fa;
+    padding: 14px;
+    border-radius: 8px;
+    margin-top: 14px;
+    line-height: 1.5;
+}
+ul {
+    line-height: 1.7;
+}
+
+.screen-example {
+    margin: 18px 0;
+    text-align: center;
+}
+
+.screen-example img {
+    max-width: 80%;
+    border-radius: 10px;
+    border: 2px solid #334155;
+    background: grey;
+}
+
+.caption {
+    font-size: 14px;
+    color: #cbd5e1;
+    margin-top: 8px;
+}
+
+.response-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 24px;
+}
+
+.response-card {
+    background: linear-gradient(180deg, #111827 0%, #0f172a 100%);
+    border-radius: 16px;
+    padding: 18px;
+    border: 1px solid #334155;
+    box-shadow: 0 16px 35px rgba(0,0,0,0.22);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+}
+
+.response-card.object-card { border-color: rgba(74, 222, 128, 0.45); }
+.response-card.rating-card { border-color: rgba(96, 165, 250, 0.50); }
+.response-card.memory-card { border-color: rgba(216, 180, 254, 0.50); }
+
+.response-card h3 {
+    margin: 0;
+    color: #bfdbfe;
+    font-size: 21px;
+}
+
+.response-subtitle {
+    margin: -8px 0 0 0;
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
+.response-img-wrap {
+    background: #808080;
+    border: 1px solid #475569;
+    border-radius: 12px;
+    padding: 10px;
+    aspect-ratio: 16 / 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.response-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    margin: 0;
+    border: none;
+}
+
+.response-card p {
+    margin: 0;
+    line-height: 1.45;
+}
+
+.measure-pill {
+    margin-top: auto;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid #334155;
+    border-radius: 999px;
+    padding: 9px 12px;
+    font-size: 14px;
+    color: #e2e8f0;
+}
+
+.code-title {
+    font-size: 13px;
+    color: #93c5fd;
+    font-weight: 700;
+    margin-bottom: -8px;
+}
+
+.response-card pre.code {
+    margin: 0;
+    max-height: 260px;
+    padding: 14px;
+    font-size: 12px;
+    line-height: 1.45;
+    overflow: auto;
+    white-space: pre;
+}
+
+.response-card pre.code code {
+    display: block;
+}
+
+
+.scoring-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 22px;
+}
+
+.scoring-card {
+    background: linear-gradient(180deg, #111827 0%, #0f172a 100%);
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 18px;
+    min-width: 0;
+}
+
+.scoring-card.object-score { border-color: rgba(74, 222, 128, 0.45); }
+.scoring-card.rating-score { border-color: rgba(96, 165, 250, 0.50); }
+.scoring-card.memory-score { border-color: rgba(216, 180, 254, 0.50); }
+
+.scoring-card h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #bfdbfe;
+}
+
+.scoring-rule {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 12px;
+    margin: 12px 0;
+    line-height: 1.45;
+}
+
+.scoring-card pre.code {
+    margin: 0;
+    max-height: 270px;
+    padding: 14px;
+    font-size: 12px;
+    line-height: 1.45;
+    overflow: auto;
+}
+
+.output-list {
+    margin: 10px 0 0 0;
+    padding-left: 18px;
+    color: #cbd5e1;
+}
+
+@media (max-width: 980px) {
+    .scoring-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .scoring-card pre.code {
+        max-height: none;
+    }
+}
+
+@media (max-width: 980px) {
+    .response-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .response-card pre.code {
+        max-height: none;
+    }
+}
+
+.response-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    cursor: zoom-in;
+    transition: transform 0.2s ease;
+}
+
+.response-img:hover {
+    transform: scale(1.02);
+}
+
+/* Fullscreen overlay */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.image-modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.image-modal.active {
+    display: flex;
+}
+
+.csv-image-wrap {
+    margin-top: 18px;
+    background: #808080;
+    border: 1px solid #475569;
+    border-radius: 12px;
+    padding: 10px;
+    overflow-x: auto;
+}
+
+.csv-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+</style>
+  <link rel="stylesheet" href="../assets/cvr-embed.css">
+  <script defer src="../assets/cvr-pages.js"></script>
+</head>
+
+<body>
+<header>
+    <h1>Psychophysics tasks tutorial</h1>
+    <p>Goal: understand the screens, then learn what to change to test your own images.</p>
+</header>
+
+<div class="container">
+    <section class="cvr-launchpad" data-cvr-launchpad="true">
+      <div class="cvr-launch-head">
+        <div><span class="cvr-tag">CVR Summer School 2026</span><h2>Psychophysics notebooks</h2><p class="cvr-muted">Use these launch buttons to open the original notebooks in Google Colab. The tutorial content below is unchanged.</p></div>
+        <a class="cvr-button" href="../index.html">← Back to tutorial hub</a>
+      </div>
+      <div class="cvr-launch-grid">
+        <div class="cvr-launch-card"><strong>Manipulate stimuli</strong><code>manipulate_stimuli.ipynb</code><div><a class="cvr-button cvr-colab" data-colab-path="manipulate_stimuli.ipynb">Open in Colab</a> <a class="cvr-button" data-github-path="manipulate_stimuli.ipynb">GitHub</a></div></div>
+        <div class="cvr-launch-card"><strong>Extract 2AFC</strong><code>psychophysics/extract_2afc_results.ipynb</code><div><a class="cvr-button cvr-colab" data-colab-path="psychophysics/extract_2afc_results.ipynb">Open in Colab</a> <a class="cvr-button" data-github-path="psychophysics/extract_2afc_results.ipynb">GitHub</a></div></div>
+        <div class="cvr-launch-card"><strong>Extract ratings</strong><code>psychophysics/extract_ratings.ipynb</code><div><a class="cvr-button cvr-colab" data-colab-path="psychophysics/extract_ratings.ipynb">Open in Colab</a> <a class="cvr-button" data-github-path="psychophysics/extract_ratings.ipynb">GitHub</a></div></div>
+        <div class="cvr-launch-card"><strong>Extract N-back</strong><code>psychophysics/extract_n_back_results.ipynb</code><div><a class="cvr-button cvr-colab" data-colab-path="psychophysics/extract_n_back_results.ipynb">Open in Colab</a> <a class="cvr-button" data-github-path="psychophysics/extract_n_back_results.ipynb">GitHub</a></div></div>
+        <div class="cvr-launch-card"><strong>Make 2AFC task lines</strong><code>psychophysics/make_2afc_html_lines.ipynb</code><div><a class="cvr-button cvr-colab" data-colab-path="psychophysics/make_2afc_html_lines.ipynb">Open in Colab</a> <a class="cvr-button" data-github-path="psychophysics/make_2afc_html_lines.ipynb">GitHub</a></div></div>
+        <div class="cvr-launch-card"><strong>Make ratings task lines</strong><code>psychophysics/make_ratings_html_lines.ipynb</code><div><a class="cvr-button cvr-colab" data-colab-path="psychophysics/make_ratings_html_lines.ipynb">Open in Colab</a> <a class="cvr-button" data-github-path="psychophysics/make_ratings_html_lines.ipynb">GitHub</a></div></div>
+        <div class="cvr-launch-card"><strong>Make N-back task lines</strong><code>psychophysics/make_n_back_html_lines.ipynb</code><div><a class="cvr-button cvr-colab" data-colab-path="psychophysics/make_n_back_html_lines.ipynb">Open in Colab</a> <a class="cvr-button" data-github-path="psychophysics/make_n_back_html_lines.ipynb">GitHub</a></div></div>
+      </div>
+    </section>
+
+
+<div class="card">
+<h2>What is this tutorial?</h2>
+<p>This tutorial explains the experiment files in simple words.</p>
+<p>You do not need to understand every line of code. Start by learning the screens that make one trial, then learn which small parts you should edit.</p>
+<div class="note"><b>Main idea:</b> each experiment is a list of screens. jsPsych shows the screens in order and saves the participant's responses.</div>
+</div>
+
+<div class="card">
+<h2>Task paradigms</h2>
+<div class="response-grid">
+<div class="response-card object-card">
+<h3>2AFC</h3>
+<p><b>2AFC</b> means <b>two-alternative forced choice</b>.</p>
+<p>The participant sees one image and chooses between two answers.</p>
+<p>Use this for object recognition or drawing recognition.</p>
+<div class="measure-pill">Files: <code>obj_recog.html</code>, <code>draw_recog.html</code></div>
+</div>
+<div class="response-card rating-card">
+<h3>Rating</h3>
+<p>The participant sees one image and moves a slider.</p>
+<p>Use this when there is no correct answer, only a score.</p>
+<div class="measure-pill">File: <code>social_ratings.html</code></div>
+</div>
+<div class="response-card memory-card">
+<h3>N-Back</h3>
+<p>The participant sees images one at a time.</p>
+<p>They answer whether each image is new or repeated.</p>
+<div class="measure-pill">File: <code>memorability.html</code></div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>What happens in one trial?</h2>
+<p>A trial is one small part of the experiment. In most tasks, one trial shows one image and asks for one response.</p>
+<div class="diagram">
+<div class="box"><strong>1. Fixation</strong>Look at +</div><div class="arrow">→</div>
+<div class="box"><strong>2. Image</strong>Show the picture</div><div class="arrow">→</div>
+<div class="box"><strong>3. Blank</strong>Short pause</div><div class="arrow">→</div>
+<div class="box"><strong>4. Response</strong>Click or rate</div><div class="arrow">→</div>
+<div class="box"><strong>5. Save data</strong>Response + reaction time</div>
+</div>
+<p>Most tasks repeat this same trial many times, once for each image.</p>
+<div class="note">In the code, these screens are added to a list called the <b>timeline</b>. jsPsych runs the timeline from top to bottom.</div>
+</div>
+
+<div class="card">
+<h2>The four main screens</h2>
+<div class="component-grid">
+    <div class="component">
+        <div class="icon">➕</div>
+        <h3>1. Fixation screen</h3>
+        <p>A plus sign appears in the middle of the screen. This tells the participant where to look before the image appears.</p>
+        <span class="cvr-tag">Common time: 500 ms</span>
+    </div>
+    <div class="component">
+        <div class="icon">🖼️</div>
+        <h3>2. Image screen</h3>
+        <p>The image is shown. In many tasks, it is shown briefly so the participant cannot look at it for too long.</p>
+        <span class="cvr-tag">Common time: 100–200 ms</span>
+    </div>
+    <div class="component">
+        <div class="icon">⚪</div>
+        <h3>3. Blank screen</h3>
+        <p>Nothing appears for a short time. This separates the image from the response screen.</p>
+        <span class="cvr-tag">Common time: 100 ms</span>
+    </div>
+    <div class="component">
+        <div class="icon">🧩</div>
+        <h3>4. Response screen</h3>
+        <p>The participant answers. They may click one of two choices, move a slider, or say whether an image is novel or repeated.</p>
+        <span class="cvr-tag">Common time: 3000–8000 ms</span>
+    </div>
+</div>
+</div>
+
+<div class="card">
+<h2>How to make the starting screens</h2>
+<p>Before the real trials start, the experiment usually adds setup screens to the timeline.</p>
+<pre class="code"><code class="language-javascript">let timeline = [];
+
+timeline.push(preload);       // load images before the task starts
+timeline.push(fullscreen);    // ask the participant to enter fullscreen
+timeline.push(consent_form);  // show consent information
+timeline.push(intro_info);    // show basic information
+timeline.push(survey);        // ask participant questions
+timeline.push(welcome);       // show task instructions</code></pre>
+
+<h3>What can I change?</h3>
+<ul>
+<li>the instruction text in <code>welcome</code>.</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>How to make a fixation screen</h2>
+<pre class="code"><code class="language-javascript">timeline.push({
+    type: 'html-keyboard-response',
+    stimulus: '&lt;div style="font-size: 60px;"&gt;+&lt;/div&gt;',
+    choices: jsPsych.NO_KEYS,
+    trial_duration: 500
+});</code></pre>
+<p>This screen shows a plus sign. The participant cannot answer during this screen.</p>
+<div class="screen-example"><img src="tutorial_assets/fixation.png" alt="Fixation screen"></div>
+<h3>What can I change?</h3>
+<ul>
+<li><code>+</code>: change the fixation symbol.</li>
+<li><code>font-size: 60px</code>: make the fixation bigger or smaller.</li>
+<li><code>trial_duration: 500</code>: change how long the screen stays on. Time is in milliseconds. 500 ms = half a second.</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>How to make an image screen</h2>
+<pre class="code"><code class="language-javascript">timeline.push({
+    type: 'image-button-response',
+    stimulus: images[i],
+    stimulus_height: stimulusSize,
+    choices: [],
+    trial_duration: 100,
+    data: { trial_index: i }
+});</code></pre>
+<p>This screen shows one image from your image list. In 2AFC tasks, the participant sees the image first and answers later.</p>
+<div class="screen-example"><img src="tutorial_assets/stimulus.png" alt="Stimulus screen"></div>
+<h3>What can I change?</h3>
+<ul>
+<li><code>images[i]</code>: this means “show the current image.” Usually, do not change this line. Change the image list instead.</li>
+<li><code>stimulus_height: stimulusSize</code>: controls the image size. Change <code>stimulusSize</code> or <code>visualAngle</code> if you want bigger or smaller images.</li>
+<li><code>choices: []</code>: means no response buttons on this screen.</li>
+<li><code>trial_duration: 100</code>: image time. 100 ms = one tenth of a second.</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>How to make a blank screen</h2>
+<pre class="code"><code class="language-javascript">timeline.push({
+    type: 'html-keyboard-response',
+    stimulus: '',
+    choices: jsPsych.NO_KEYS,
+    trial_duration: 100
+});</code></pre>
+<p>This screen shows nothing. It creates a short pause after the image.</p>
+<div class="screen-example"><img src="tutorial_assets/blank.png" alt="Blank screen"></div>
+<h3>What can I change?</h3>
+<ul>
+<li><code>stimulus: ''</code>: empty means the screen is blank.</li>
+<li><code>trial_duration: 100</code>: blank time. Increase it for a longer pause.</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>How to make response screens</h2>
+<p>Different task paradigms use different response screens.</p>
+<div class="response-grid">
+    <div class="response-card object-card">
+        <h3>2AFC response</h3>
+        <div class="response-subtitle">Choose between two answers</div>
+        <div class="response-img-wrap"><img src="tutorial_assets/object_choice.png" class="response-img" alt="2AFC response screen"></div>
+        <p>The participant clicks the left or right answer.</p>
+        <div class="code-title">Example code</div>
+<pre class="code"><code class="language-javascript">timeline.push({
+    type: 'html-button-response',
+    stimulus: '',
+    button_html: [lb1, lb2],
+    choices: ['left', 'right'],
+    trial_duration: 3000
+});</code></pre>
+        <p><b>Change:</b> <code>lb1</code> and <code>lb2</code> to change the labels/images shown as answers. Change <code>trial_duration</code> to give more or less time to answer.</p>
+        <div class="measure-pill">Saves: choice, accuracy, reaction time</div>
+    </div>
+    <div class="response-card rating-card">
+        <h3>Rating response</h3>
+        <div class="response-subtitle">Move a slider</div>
+        <div class="response-img-wrap"><img src="tutorial_assets/slider_response.png" class="response-img" alt="Rating response screen"></div>
+        <p>The participant gives a rating using a slider.</p>
+        <div class="code-title">Example code</div>
+<pre class="code"><code class="language-javascript">timeline.push({
+    type: 'html-slider-response',
+    stimulus: '&lt;p&gt;Choose a position on the slider.&lt;/p&gt;',
+    labels: ['1', '5'],
+    min: 1,
+    max: 5,
+    step: 1,
+    require_movement: true,
+    trial_duration: 8000
+});</code></pre>
+        <p><b>Change:</b> <code>stimulus</code> for the question, <code>min</code>/<code>max</code> for the rating scale, <code>labels</code> for text under the slider, and <code>trial_duration</code> for response time.</p>
+        <div class="measure-pill">Saves: rating, reaction time</div>
+    </div>
+    <div class="response-card memory-card">
+        <h3>N-Back response</h3>
+        <div class="response-subtitle">Novel or repeated?</div>
+        <div class="response-img-wrap"><img src="tutorial_assets/memorability.png" class="response-img" alt="N-Back response screen"></div>
+        <p>The participant says whether the image is new or has appeared before.</p>
+        <div class="code-title">Example code</div>
+<pre class="code"><code class="language-javascript">timeline.push({
+    type: 'image-button-response',
+    stimulus: images[i],
+    stimulus_height: stimulusSize,
+    choices: ['Novel', 'Repeated'],
+    prompt: '&lt;p&gt;Has this image been shown before?&lt;/p&gt;',
+    trial_duration: 3000,
+    stimulus_duration: 200
+});</code></pre>
+        <p><b>Change:</b> <code>choices</code> to change button text, <code>prompt</code> to change the question, <code>stimulus_duration</code> to change image time, and <code>trial_duration</code> to change total answer time.</p>
+        <div class="measure-pill">Saves: choice, accuracy, reaction time</div>
+    </div>
+</div>
+</div>
+
+<div class="card">
+<h2>Important timing words</h2>
+<table style="width:100%; border-collapse:collapse; line-height:1.7;">
+<tr><th style="text-align:left; border-bottom:1px solid #475569;">Code word</th><th style="text-align:left; border-bottom:1px solid #475569;">Meaning</th><th style="text-align:left; border-bottom:1px solid #475569;">Example</th></tr>
+<tr><td><code>trial_duration</code></td><td>How long the whole screen lasts.</td><td><code>trial_duration: 3000</code> means 3 seconds.</td></tr>
+<tr><td><code>stimulus_duration</code></td><td>How long the image itself is visible during a response screen.</td><td><code>stimulus_duration: 200</code> means the image disappears after 200 ms.</td></tr>
+<tr><td><code>choices: jsPsych.NO_KEYS</code></td><td>The participant cannot press keys to answer.</td><td>Used for fixation and blank screens.</td></tr>
+<tr><td><code>choices: []</code></td><td>No response buttons are shown.</td><td>Used when the image is shown before the answer screen.</td></tr>
+</table>
+<div class="note">All times are in milliseconds. 1000 ms = 1 second.</div>
+</div>
+
+<div class="card">
+<h2>The most important section to edit</h2>
+<p>Open a task file and look for this line:</p>
+<pre class="code"><code class="language-javascript">// ===== STUDENTS: EDIT THIS SECTION =====</code></pre>
+<p>This section tells the task which images to show and, when needed, which answer is correct.</p>
+</div>
+
+<div class="card">
+<h2>What can I change?</h2>
+<table style="width:100%; border-collapse:collapse; line-height:1.7;">
+<tr><th style="text-align:left; border-bottom:1px solid #475569;">What you want to change</th><th style="text-align:left; border-bottom:1px solid #475569;">Where to look</th><th style="text-align:left; border-bottom:1px solid #475569;">What to edit</th></tr>
+<tr><td>Images shown in the task</td><td><code>// STUDENTS: EDIT THIS SECTION</code></td><td><code>val</code></td></tr>
+<tr><td>Image folder</td><td>near the image list</td><td><code>imageFolder</code> or image path text</td></tr>
+<tr><td>Create altered image versions</td><td><code>manipulate_stimuli.ipynb</code></td><td>Use it to make blurred, noisy, brighter, or contrast-changed images</td></tr>
+<tr><td>Correct answer in 2AFC</td><td><code>obj_2afc.html</code> or <code>draw_2afc.html</code></td><td><code>correct_choice</code></td></tr>
+<tr><td>Left and right answers in 2AFC</td><td><code>obj_2afc.html</code> or <code>draw_2afc.html</code></td><td><code>ch1</code> and <code>ch2</code></td></tr>
+<tr><td>Novel/repeated answer in N-Back</td><td><code>n_back.html</code></td><td><code>correct</code></td></tr>
+<tr><td>Timing of a screen</td><td>inside each screen object</td><td><code>trial_duration</code> or <code>stimulus_duration</code></td></tr>
+<tr><td>Rating scale</td><td><code>ratings.html</code></td><td><code>min</code>, <code>max</code>, <code>step</code>, and <code>labels</code></td></tr>
+<tr><td>Instruction text</td><td>welcome/instruction screens</td><td>text inside <code>stimulus</code> or <code>prompt</code></td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>How to change images in a 2AFC task</h2>
+<p>Example from <code>obj_recog.html</code>:</p>
+<pre class="code"><code class="language-javascript">let val = [81, 63, 54, 31, 142];
+let ch1 = [4, 5, 9, 2, 5];
+let ch2 = [0, 3, 2, 1, 7];
+let correct_choice = [4, 3, 2, 1, 7];</code></pre>
+<p>Read this as:</p>
+<ul>
+<li><code>val</code> = the image indices shown to the participant.</li>
+<li><code>ch1</code> = the answer shown on the left.</li>
+<li><code>ch2</code> = the answer shown on the right.</li>
+<li><code>correct_choice</code> = the correct answer for each image.</li>
+</ul>
+<div class="note">All four lists must have the same length. If you show 5 images, you need 5 left answers, 5 right answers, and 5 correct answers.</div>
+</div>
+
+<div class="card">
+<h2>Example: test your own 2AFC images</h2>
+<p>Put your images in:</p>
+<pre class="code"><code>images/your_experiment_name/</code></pre>
+<p>Name them like this:</p>
+<pre class="code"><code>im0.png
+im1.png
+im2.png</code></pre>
+<p>Then change the image list:</p>
+<pre class="code"><code class="language-javascript">let val = [0, 1, 2];</code></pre>
+<p>The task will now show <code>im0.png</code>, <code>im1.png</code>, and <code>im2.png</code>.</p>
+</div>
+
+<div class="card">
+<h2>How to change images in a Rating task</h2>
+<p>Example from <code>ratings.html</code>:</p>
+<pre class="code"><code class="language-javascript">let val = [7, 2, 15, 0, 18];</code></pre>
+<p>This means the task shows:</p>
+<pre class="code"><code>im7.jpg
+im2.jpg
+im15.jpg
+im0.jpg
+im18.jpg</code></pre>
+<p>To test your own images, put them in:</p>
+<pre class="code"><code>images/your_experiment_name/</code></pre>
+<p>Then change <code>val</code> to your image numbers.</p>
+</div>
+
+<div class="card">
+<h2>How to change images in an N-Back task</h2>
+<p>Example from <code>n_back.html</code>:</p>
+<pre class="code"><code class="language-javascript">var val = [161, 161, 115];
+var correct = [0, 1, 0];</code></pre>
+<p>Read this as:</p>
+<ul>
+<li>The first image is <code>im161.png</code>. It is new, so the correct answer is <code>0</code>.</li>
+<li>The second image is also <code>im161.png</code>. It is repeated, so the correct answer is <code>1</code>.</li>
+<li>The third image is <code>im115.png</code>. It is new, so the correct answer is <code>0</code>.</li>
+</ul>
+<div class="note"><code>0</code> means Novel. <code>1</code> means Repeated.</div>
+</div>
+
+<div class="card">
+<h2>How to use your own images</h2>
+
+<p>
+To test your own images, we suggest using around <b>20 images</b>.
+This is enough to try the task without making the experiment too long.
+</p>
+
+<p>
+There are three steps:
+</p>
+
+<ul>
+<li><b>Step 1:</b> save your images in an image folder.</li>
+<li><b>Step 2:</b> choose the task paradigm: <b>2AFC</b>, <b>Rating</b>, or <b>N-Back</b>.</li>
+<li><b>Step 3:</b> create a small metadata CSV file that describes the images.</li>
+</ul>
+
+<div class="note">
+<b>Important idea:</b> the metadata file tells the experiment which images to show and what the correct answer is.
+After you create the metadata file, a small script can generate the lines you need to paste into the HTML file.
+</div>
+</div>
+
+<div class="card">
+<h2>Step 1: save your images</h2>
+
+<p>
+Put your images in a folder inside the <code>images</code> folder.
+For example:
+</p>
+
+<pre class="code"><code>images/my_experiment/</code></pre>
+
+<p>
+Name your images with numbers:
+</p>
+
+<pre class="code"><code>im0.png
+im1.png
+im2.png
+im3.png
+...</code></pre>
+
+<p>
+The number in the file name is the <b>image index</b>.
+For example, <code>im7.png</code> has image index <code>7</code>.
+</p>
+</div>
+
+<div class="card">
+<h2>Step 2: choose your task paradigm</h2>
+
+<table style="width:100%; border-collapse:collapse; line-height:1.7;">
+<tr>
+<th style="text-align:left; border-bottom:1px solid #475569;">Task paradigm</th>
+<th style="text-align:left; border-bottom:1px solid #475569;">What the participant does</th>
+<th style="text-align:left; border-bottom:1px solid #475569;">What the metadata needs</th>
+</tr>
+
+<tr>
+<td><b>2AFC</b></td>
+<td>Choose between two answers.</td>
+<td>Image file, image index, correct answer.</td>
+</tr>
+
+<tr>
+<td><b>Rating</b></td>
+<td>Move a slider to give a rating.</td>
+<td>Image file and image index.</td>
+</tr>
+
+<tr>
+<td><b>N-Back</b></td>
+<td>Say whether the image is novel or repeated.</td>
+<td>Image file, image index, correct answer.</td>
+</tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Step 3: create a metadata CSV file</h2>
+
+<p>
+A metadata CSV file is a small table that describes your images.
+You can make it in Excel, Google Sheets, or Python.
+Then save it as a <code>.csv</code> file.
+</p>
+
+<h3>Example metadata file for 2AFC</h3>
+
+<p>
+Use this format if the participant must choose between two answers.
+For 2AFC, you only need to provide the correct answer.
+The script will automatically create the left and right choices.
+</p>
+
+<p>
+The answer numbers can come from this class list:
+</p>
+
+<pre class="code"><code class="language-javascript">lb = ['bear','elephant','person','car','dog','apple','chair','plane','bird','zebra']</code></pre>
+<p>
+The first class has index <code>0</code>, the second class has index <code>1</code>, and so on:
+</p>
+
+
+<pre class="code"><code>image_file,image_idx,correct_choice
+im0.png,0,4
+im1.png,1,3
+im2.png,2,6
+im3.png,3,9</code></pre>
+<p>
+Read this as:
+</p>
+
+<ul>
+<li><code>im0.png</code> shows image <code>0</code>. The correct answer is <code>4</code>, which means <b>dog</b>.</li>
+<li><code>im1.png</code> shows image <code>1</code>. The correct answer is <code>3</code>, which means <b>car</b>.</li>
+<li><code>im2.png</code> shows image <code>2</code>. The correct answer is <code>6</code>, which means <b>chair</b>.</li>
+<li><code>im3.png</code> shows image <code>3</code>. The correct answer is <code>9</code>, which means <b>zebra</b>.</li>
+</ul>
+
+<div class="note">
+The script will use <code>correct_choice</code> to create the two response options.
+One option will be the correct class. The other option will be a wrong class chosen from the same class list.
+</div>
+
+<h3>Example metadata file for Rating</h3>
+
+<p>
+Use this format if the participant gives a rating.
+There is no correct answer.
+</p>
+
+<pre class="code"><code>image_file,image_idx
+im0.png,0
+im1.png,1
+im2.png,2
+im3.png,3</code></pre>
+
+<h3>Example metadata file for N-Back</h3>
+
+<p>
+Use this format if the participant answers Novel or Repeated.
+For N-Back, you only need to say which images should be repeated.
+The script will create the final task order.
+</p>
+
+<pre class="code"><code>image_file,image_idx,repeated
+im0.png,0,0
+im1.png,1,0
+im2.png,2,1
+im3.png,3,0
+im4.png,4,1</code></pre>
+
+<p>
+Read this as:
+</p>
+
+<ul>
+<li><code>image_file</code>: the image file name.</li>
+<li><code>image_idx</code>: the number of the image.</li>
+<li><code>repeated</code>: whether this image should be repeated later in the task.</li>
+</ul>
+
+<div class="note">
+<code>0</code> means the image is shown once only.
+<br>
+<code>1</code> means the image is shown once, then shown again later as a repeated image.
+</div>
+
+<p>
+By default, the script uses <code>N = 5</code>.
+This means that a repeated image appears again 5 trials after it first appeared.
+</p>
+
+<div class="card">
+<h2>Generate the HTML lines from the metadata file</h2>
+
+<p>
+After making the metadata CSV file, use the script for your task paradigm.
+The script reads the metadata file and prints the lines you need to copy into the HTML file.
+</p>
+
+<table style="width:100%; border-collapse:collapse; line-height:1.7;">
+<tr>
+<th style="text-align:left; border-bottom:1px solid #475569;">Task paradigm</th>
+<th style="text-align:left; border-bottom:1px solid #475569;">Script</th>
+<th style="text-align:left; border-bottom:1px solid #475569;">Lines it creates</th>
+</tr>
+
+<tr>
+<td>2AFC</td>
+<td><code>make_2afc_html_lines.py</code></td>
+<td><code>val</code>, <code>ch1</code>, <code>ch2</code>, <code>correct_choice</code></td>
+</tr>
+
+<tr>
+<td>Rating</td>
+<td><code>make_ratings_html_lines.py</code></td>
+<td><code>val</code></td>
+</tr>
+
+<tr>
+<td>N-Back</td>
+<td><code>make_nback_html_lines.py</code></td>
+<td><code>val</code>, <code>correct</code></td>
+</tr>
+</table>
+
+<p>
+Then paste the generated lines into the HTML file under:
+</p>
+
+<pre class="code"><code>// ===== STUDENTS: EDIT THIS SECTION =====</code></pre>
+</div>
+</div>
+
+<div class="card">
+<h2>What jsPsych saves automatically</h2>
+<p>jsPsych saves the participant's data after every trial.</p>
+<ul>
+<li><code>response</code>: what the participant clicked or selected.</li>
+<li><code>rt</code>: reaction time.</li>
+<li><code>stimulus</code>: the image that was shown.</li>
+</ul>
+<p>The task can also save extra information, such as whether the answer was correct.</p>
+</div>
+
+<div class="card">
+<h2>How data are scored</h2>
+<div class="scoring-grid">
+<div class="scoring-card object-score"><h3>2AFC</h3><p>The code checks whether the selected left/right option matches the correct label.</p><p>Saved column: <code>correct</code>.</p></div>
+<div class="scoring-card rating-score"><h3>Rating</h3><p>There is no correct answer. The important value is the slider response.</p><p>Saved column: <code>response</code>.</p></div>
+<div class="scoring-card memory-score"><h3>N-Back</h3><p>The code checks whether the participant clicked Novel or Repeated correctly.</p><p>Saved column: <code>correct</code>.</p></div>
+</div>
+<h3>Example: raw CSV file</h3>
+<p>
+This is what the data look like immediately after running the experiment.
+The raw CSV contains <b>all screens</b>, including preload, fullscreen, instructions,
+survey questions, fixation screens, image screens, blank screens, and response screens.
+That is why the file has many rows that are not actual trials.
+</p>
+<p>
+For analysis, we usually do not want every row. We mainly want the rows where the
+participant gave an answer.
+</p>
+
+<div class="csv-image-wrap">
+    <img src="tutorial_assets/raw_data.png" class="response-img csv-image" alt="Raw CSV">
+</div>
+</div>
+
+<div class="card">
+<h2>How do I extract the data?</h2>
+<p>After collecting CSV files from participants, open the parser notebook for your task paradigm.</p>
+
+<table style="width:100%; border-collapse:collapse; line-height:1.7;">
+<tr><th style="text-align:left; border-bottom:1px solid #475569;">Task paradigm</th><th style="text-align:left; border-bottom:1px solid #475569;">Use this parser notebook</th><th style="text-align:left; border-bottom:1px solid #475569;">What it does</th></tr>
+<tr><td>2AFC</td><td><code>extract_2afc_results.ipynb</code></td><td>Keeps one row per image choice and computes whether the answer was correct.</td></tr>
+<tr><td>Rating</td><td><code>extract_ratings.ipynb</code></td><td>Keeps one row per rated image and keeps the slider rating.</td></tr>
+<tr><td>N-Back</td><td><code>extract_n_back_results.ipynb</code></td><td>Keeps one row per image and computes whether Novel/Repeated was correct.</td></tr>
+</table>
+
+<h3>Example: extracted CSV file</h3>
+<p>
+This is what the data look like after using the parser notebook.
+The extracted CSV is much easier to read because it keeps only the useful information:
+one row per real trial, the image shown, the participant's response, the correct answer,
+and whether the participant was correct.
+</p>
+<p>
+This cleaned file is the one you should use for plotting results and computing accuracy
+or average ratings.
+</p>
+
+<div class="csv-image-wrap">
+    <img src="tutorial_assets/extracted_data.png" class="response-img csv-image" alt="Extracted CSV">
+</div>
+
+<h3>What can I change?</h3>
+<pre class="code"><code class="language-python">input_folder = "data/raw_data_folder"
+output_file = "data/extracted_results.csv"</code></pre>
+
+<ul>
+<li><code>input_folder</code>: the folder containing the raw CSV files from participants.</li>
+<li><code>output_file</code>: the name of the clean CSV file you want to create.</li>
+</ul>
+
+<div class="note">Simple rule: raw CSV files are for saving everything. Extracted CSV files are for future analysis.</div>
+</div>
+
+<div class="card">
+<h2>Student checklist</h2>
+<ul>
+<li>Choose a task paradigm: 2AFC, Rating, or N-Back.</li>
+<li>Put your images in the correct image folder.</li>
+<li>Name your images <code>im0.png</code>, <code>im1.png</code>, etc. Use <code>.jpg</code> if the task expects jpg files.</li>
+<li>Open the task file.</li>
+<li>Find <code>// ===== STUDENTS: EDIT THIS SECTION =====</code>.</li>
+<li>Change the image numbers.</li>
+<li>For 2AFC or N-Back, also change the correct answers.</li>
+<li>Change screen times if needed by editing <code>trial_duration</code> or <code>stimulus_duration</code>.</li>
+<li>Run the task and check the saved CSV file.</li>
+<li>Optional: use <code>manipulate_stimuli.ipynb</code> to create altered versions of your images, such as blurred or noisy images.</li>
+</ul>
+</div>
+
+
+<div class="image-modal" id="imageModal">
+    <img id="modalImg">
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+
+    document.querySelectorAll(".response-img").forEach(function (img) {
+        img.addEventListener("click", function () {
+            modal.classList.add("active");
+            modalImg.src = img.src;
+        });
+    });
+
+    modal.addEventListener("click", function () {
+        modal.classList.remove("active");
+        modalImg.src = "";
+    });
+});
+</script>
+
+<div class="cvr-floating-home"><a href="../index.html">Hub</a></div>
+</body>
+
+</html>

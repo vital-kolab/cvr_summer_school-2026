@@ -1,0 +1,6 @@
+source_file,subject_id,rt,stimulus_image,image_idx,response,correct_choice,choices,correct
+obj_2afc_484959.csv,484959,927.3000000119208,../../images/obj_2AFC/im81.png,81,0,4,"[4,0]",True
+obj_2afc_484959.csv,484959,525.5,../../images/obj_2AFC/im63.png,63,0,3,"[5,3]",False
+obj_2afc_484959.csv,484959,1340.0,../../images/obj_2AFC/im54.png,54,1,2,"[9,2]",True
+obj_2afc_484959.csv,484959,1540.5999999642372,../../images/obj_2AFC/im31.png,31,1,1,"[2,1]",True
+obj_2afc_484959.csv,484959,2173.699999988079,../../images/obj_2AFC/im142.png,142,0,7,"[5,7]",False

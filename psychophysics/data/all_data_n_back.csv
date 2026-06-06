@@ -1,0 +1,16 @@
+source_file,subject_id,trial_index,time_elapsed,rt,stimulus,image_idx,occurrence,is_repeat,repeat_lag,response,correct_response,correct,correct_at_second_occurrence
+n_back_298127.csv,298127,7,8855,1312.800000011921,../../images/n_back/im161.png,161,1,False,0,0,0.0,True,
+n_back_298127.csv,298127,9,9878,520.1999999880791,../../images/n_back/im161.png,161,2,True,1,1,1.0,True,True
+n_back_298127.csv,298127,11,10862,481.300000011921,../../images/n_back/im115.png,115,1,False,0,0,0.0,True,
+n_back_298127.csv,298127,13,11711,346.60000002384186,../../images/n_back/im123.png,123,1,False,0,0,0.0,True,
+n_back_298127.csv,298127,15,12528,313.60000002384186,../../images/n_back/im66.png,66,1,False,0,0,0.0,True,
+n_back_298127.csv,298127,17,13555,523.6000000238419,../../images/n_back/im153.png,153,1,False,0,0,0.0,True,
+n_back_298127.csv,298127,19,14695,637.1999999880791,../../images/n_back/im31.png,31,1,False,0,0,0.0,True,
+n_back_298127.csv,298127,21,15690,492.5,../../images/n_back/im47.png,47,1,False,0,0,0.0,True,
+n_back_298127.csv,298127,23,16795,602.3999999761581,../../images/n_back/im26.png,26,1,False,0,1,0.0,False,
+n_back_298127.csv,298127,25,17762,464.0,../../images/n_back/im128.png,128,1,False,0,0,0.0,True,
+n_back_298127.csv,298127,27,18805,540.3000000119209,../../images/n_back/im96.png,96,1,False,0,0,0.0,True,
+n_back_298127.csv,298127,29,19905,596.7999999523163,../../images/n_back/im32.png,32,1,False,0,0,0.0,True,
+n_back_298127.csv,298127,31,21045,637.2999999523163,../../images/n_back/im115.png,115,2,True,10,1,1.0,True,True
+n_back_298127.csv,298127,33,22239,691.1999999880791,../../images/n_back/im120.png,120,1,False,0,0,0.0,True,
+n_back_298127.csv,298127,35,23272,530.4000000357628,../../images/n_back/im22.png,22,1,False,0,0,0.0,True,

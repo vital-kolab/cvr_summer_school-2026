@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>2AFC paradigm - object images</title>
+
+    <script src="https://unpkg.com/jspsych@6.3.1/jspsych.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-html-button-response.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-image-button-response.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-image-slider-response.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-fullscreen.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-preload.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-call-function.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-survey-multi-choice.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-survey-text.js"></script>
+    <link href="https://unpkg.com/jspsych@6.3.1/css/jspsych.css" rel="stylesheet" type="text/css">
+
+    <script src="utils.js"></script>
+</head>
+<body style="background-color:grey;">
+
+  <script>
+    
+    const visualAngle = 8; // Image size on the screen. Bigger number = bigger image.
+    const viewingDistance = 20; // Approximate viewing distance in inches.
+    const stimulusSize = calculateStimulusSize(visualAngle, viewingDistance);
+    const spaceBetweenLabels = calculateStimulusSize(8, viewingDistance) / 2;
+    
+    // ===== STUDENTS: EDIT THIS SECTION =====
+    // This is a 2AFC task.
+    // 2AFC = "two choices". The participant sees one image, then chooses left or right.
+    //
+    // val = image numbers to show.
+    // Example: 81 means the task will show ../../images/obj_recog/im81.png
+    //
+    // ch1 = label image shown on the LEFT.
+    // ch2 = label image shown on the RIGHT.
+    // correct_choice = the correct label number for each trial.
+    //
+    // IMPORTANT: These lists must have the same length.
+    // If val has 5 numbers, ch1, ch2, and correct_choice must also have 5 numbers.
+    let val =[81,63,54,31,142];
+    let ch1 =[4,5,9,2,5];
+    let ch2 =[0,3,2,1,7];
+    let correct_choice =[4,3,2,1,7];
+
+
+    let images = [];
+    for (let i = 0; i < val.length; i++) {
+        images.push(`../../images/obj_2AFC/im${val[i]}.png`);
+    }
+
+    let labelImages = [];
+    for (let i = 0; i < ch1.length; i++) {
+        labelImages.push(`../../images/labels/im${ch1[i]}.png`);
+    }
+    for (let i = 0; i < ch2.length; i++) {
+        labelImages.push(`../../images/labels/im${ch2[i]}.png`);
+    }
+    
+    // Timeline: this is the list of screens shown to the participant.
+    let timeline = [];
+    
+    // Load images before the task starts. This helps avoid delays during the task.
+    let preload = {
+        type: 'preload',
+        images: images,
+        message: '<div style="font-size: 24px; text-align: center;"><strong>Loading the experiment... (1/2)</strong></div>',
+        show_progress_bar: true
+    };
+    timeline.push(preload);
+
+    // Load answer-label images before the task starts.
+    let labelPreload = {
+        type: 'preload',
+        images: labelImages,
+        message: '<div style="font-size: 24px; text-align: center;"><strong>Loading the experiment... (2/2)</strong></div>',
+        show_progress_bar: true
+    };
+    timeline.push(labelPreload);
+    
+    timeline.push(fullscreen);
+    timeline.push(consent_form);
+    timeline.push(intro_info);
+    timeline.push(survey);
+
+    // Welcome page: explain the task in simple words.
+    var welcome = {
+        type: "html-keyboard-response",
+        stimulus: "<div style='font-size: 24px; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center;'>" +
+          "<div style='display: block;'>" +
+          "<span style='font-weight: bold;'>Welcome!</span><br><br>" +
+          "In this task, you will see one image very briefly. Then you will see two answer options. " +
+          "Click the option that best matches the image you just saw.<br><br>" +
+          "Please look at the center <span style='font-weight: bold;'>+</span> before each image appears.<br><br>" +
+          "<span style='font-weight: bold;'>Press any key to begin.</span></div></div>"
+    };
+    timeline.push(welcome);
+    
+    // These variables count performance during the task.
+    let correctResponses = 0;
+    let trialCount = 0;
+    
+    // Trial loop: this repeats the same steps for every image.
+    for (let i = 0; i < images.length; i++) {
+
+        // 1/5 Fixation: participant looks at the center cross.
+        timeline.push({
+            type: 'html-keyboard-response',
+            stimulus: '<div style="font-size: 60px;">+</div>',
+            choices: jsPsych.NO_KEYS,
+            trial_duration: 500
+        });
+
+        // 2/5 Image: show the image briefly.
+        timeline.push({
+            type: 'image-button-response',
+            stimulus: images[i],
+            stimulus_height: stimulusSize,
+            choices: [],
+            trial_duration: 100,
+            data: { trial_index: i }
+        });
+
+        // 3/5 Blank screen: short pause after the image.
+        timeline.push({
+            type: 'html-keyboard-response',
+            stimulus: '',
+            choices: jsPsych.NO_KEYS,
+            trial_duration: 100
+        });
+
+        // Make the two answer buttons: ch1 is on the left, ch2 is on the right.
+        let lb1 = `<img src="${labelImages[i]}" height="200px" width="200px" style="margin-right:${spaceBetweenLabels}px;"/>`;
+        let lb2 = `<img src="${labelImages[i + ch1.length]}" height="200px" width="200px"/>`;
+
+        // 4/5 Choice screen: participant clicks left or right.
+        timeline.push({
+            type: 'html-button-response',
+            stimulus: '',
+            button_html: [lb1, lb2], // left button, right button
+            choices: ['left', 'right'],
+            trial_duration: 3000,
+            data: { correct_choice: correct_choice[i], choices: [ch1[i], ch2[i]] }, // Save the correct answer and the two options shown.
+            on_finish: function(data) {
+                if ((data.response === 0 && data.choices[0] === correct_choice[i]) ||
+                    (data.response === 1 && data.choices[1] === correct_choice[i])) {
+                    data.correct = true;
+                    correctResponses++;
+                } else {
+                    data.correct = false;
+                }
+                trialCount++;
+            }
+        }); 
+
+        // 5/5 Short pause before the next trial.
+        timeline.push({
+            type: 'html-keyboard-response',
+            stimulus: '',
+            choices: jsPsych.NO_KEYS,
+            trial_duration: 1000
+        })
+    };
+
+    // Start the experiment and save the data at the end.
+    jsPsych.init({
+        timeline: timeline,
+        show_progress_bar: true,
+        on_finish: function() {
+                    var csv = jsPsych.data.get().csv();
+                    let subject_id = Math.floor(100000 + Math.random() * 900000); // random 6-digit participant ID
+                    var filename = 'obj_2afc_' + subject_id + '.csv';
+                    downloadCSV(csv, filename);
+                }
+    });
+    
+  </script>
+</body>
+</html>

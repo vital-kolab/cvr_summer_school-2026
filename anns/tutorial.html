@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ANN Tutorial | Testing Models Like Subjects</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --ink: #1f2937;
+      --muted: #5b6472;
+      --accent: #4f46e5;
+      --accent-soft: #eef2ff;
+      --good-soft: #ecfdf5;
+      --good: #10b981;
+      --warn-soft: #fff7ed;
+      --warn: #f97316;
+      --border: #e5e7eb;
+      --code-bg: #111827;
+      --code-ink: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #4338ca, #7c3aed);
+      color: white;
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      opacity: 0.95;
+    }
+
+    main {
+      width: min(1050px, calc(100% - 32px));
+      margin: 32px auto 64px;
+    }
+
+    nav, section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin: 24px 0;
+      box-shadow: 0 10px 30px rgba(31, 41, 55, 0.06);
+    }
+
+    nav strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    nav a {
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+      margin: 4px 14px 4px 0;
+      font-weight: 600;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #111827;
+      font-size: 1.75rem;
+    }
+
+    h3 {
+      color: #111827;
+      margin-top: 28px;
+    }
+
+    .callout {
+      background: var(--accent-soft);
+      border-left: 5px solid var(--accent);
+      padding: 16px 18px;
+      border-radius: 12px;
+      margin: 18px 0;
+      font-size: 1.02rem;
+    }
+
+    .success {
+      background: var(--good-soft);
+      border-left: 5px solid var(--good);
+      padding: 16px 18px;
+      border-radius: 12px;
+      margin: 18px 0;
+    }
+
+    .warning {
+      background: var(--warn-soft);
+      border-left: 5px solid var(--warn);
+      padding: 16px 18px;
+      border-radius: 12px;
+      margin: 18px 0;
+    }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin: 18px 0;
+    }
+
+    .step {
+      background: #eef2ff;
+      color: #312e81;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .arrow {
+      color: var(--muted);
+      font-weight: bold;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin: 18px 0;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      background: #fbfbff;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      background: #eef2ff;
+      color: #3730a3;
+      padding: 2px 5px;
+      border-radius: 6px;
+      font-size: 0.95em;
+    }
+
+    pre {
+      background: var(--code-bg);
+      color: var(--code-ink);
+      padding: 18px;
+      border-radius: 14px;
+      overflow-x: auto;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f3f4f6;
+    }
+
+    footer {
+      color: var(--muted);
+      text-align: center;
+      padding: 24px;
+    }
+  </style>
+  <link rel="stylesheet" href="../assets/cvr-embed.css">
+  <script defer src="../assets/cvr-pages.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Testing Models Like Human Subjects</h1>
+    <p>
+      We already tested human participants on psychophysics tasks.
+      Now we test artificial neural networks on the same task images and ask:
+      do the models behave like human subjects?
+    </p>
+  </header>
+
+  <main>
+    <section class="cvr-launchpad" data-cvr-launchpad="true">
+      <div class="cvr-launch-head">
+        <div><span class="cvr-tag">CVR Summer School 2026</span><h2>ANN notebooks</h2><p class="cvr-muted">Use these launch buttons to open the original notebooks in Google Colab. The tutorial content below is unchanged.</p></div>
+        <a class="cvr-button" href="../index.html">← Back to tutorial hub</a>
+      </div>
+      <div class="cvr-launch-grid">
+        <div class="cvr-launch-card"><strong>AlexNet demo</strong><code>anns/AlexNet_demo.ipynb</code><div><a class="cvr-button cvr-colab" data-colab-path="anns/AlexNet_demo.ipynb">Open in Colab</a> <a class="cvr-button" data-github-path="anns/AlexNet_demo.ipynb">GitHub</a></div></div>
+        <div class="cvr-launch-card"><strong>Facial emotion</strong><code>anns/Facial_emotion.ipynb</code><div><a class="cvr-button cvr-colab" data-colab-path="anns/Facial_emotion.ipynb">Open in Colab</a> <a class="cvr-button" data-github-path="anns/Facial_emotion.ipynb">GitHub</a></div></div>
+        <div class="cvr-launch-card"><strong>Object 2AFC</strong><code>anns/obj_2afc.ipynb</code><div><a class="cvr-button cvr-colab" data-colab-path="anns/obj_2afc.ipynb">Open in Colab</a> <a class="cvr-button" data-github-path="anns/obj_2afc.ipynb">GitHub</a></div></div>
+        <div class="cvr-launch-card"><strong>Drawing 2AFC</strong><code>anns/draw_2afc.ipynb</code><div><a class="cvr-button cvr-colab" data-colab-path="anns/draw_2afc.ipynb">Open in Colab</a> <a class="cvr-button" data-github-path="anns/draw_2afc.ipynb">GitHub</a></div></div>
+        <div class="cvr-launch-card"><strong>Ratings</strong><code>anns/ratings.ipynb</code><div><a class="cvr-button cvr-colab" data-colab-path="anns/ratings.ipynb">Open in Colab</a> <a class="cvr-button" data-github-path="anns/ratings.ipynb">GitHub</a></div></div>
+        <div class="cvr-launch-card"><strong>N-back</strong><code>anns/n_back.ipynb</code><div><a class="cvr-button cvr-colab" data-colab-path="anns/n_back.ipynb">Open in Colab</a> <a class="cvr-button" data-github-path="anns/n_back.ipynb">GitHub</a></div></div>
+        <div class="cvr-launch-card"><strong>Human vs ANN comparison</strong><code>compare_humans_vs_anns.ipynb</code><div><a class="cvr-button cvr-colab" data-colab-path="compare_humans_vs_anns.ipynb">Open in Colab</a> <a class="cvr-button" data-github-path="compare_humans_vs_anns.ipynb">GitHub</a></div></div>
+      </div>
+    </section>
+
+    <nav>
+      <strong>Sections</strong>
+      <a href="#goal">Goal</a>
+      <a href="#big-picture">Big picture</a>
+      <a href="#demo">Demo notebooks</a>
+      <a href="#files">Task notebooks</a>
+      <a href="#shared-code">Shared code</a>
+      <a href="#two-afc">2AFC notebooks</a>
+      <a href="#ratings">Ratings notebook</a>
+      <a href="#nback">N-back notebook</a>
+      <a href="#outputs">Outputs</a>
+      <a href="#validation">Validation</a>
+      <a href="#summary">Summary</a>
+    </nav>
+
+    <section id="goal">
+      <h2>1. Goal of this tutorial</h2>
+
+      <p>
+        This tutorial explains the simplified model notebooks.
+        The main idea is very simple:
+      </p>
+
+      <div class="flow">
+        <span class="step">Humans did a task</span>
+        <span class="arrow">→</span>
+        <span class="step">Models do the same task</span>
+        <span class="arrow">→</span>
+        <span class="step">We compare them</span>
+      </div>
+
+      <p>
+        In the human experiments, participants saw images and gave responses.
+        In the model notebooks, the model sees the same kind of images and gives a prediction.
+      </p>
+
+      <div class="callout">
+        <strong>Big idea:</strong> we treat the model like another subject.
+        A useful model should show similar behavior to human subjects:
+        similar easy images, similar hard images, and similar mistakes.
+      </div>
+    </section>
+
+    <section id="big-picture">
+      <h2>2. What does “model as a subject” mean?</h2>
+
+      <p>
+        A human subject sees an image and produces a response.
+        A model also receives an image and produces an output.
+        The code makes these two things comparable.
+      </p>
+
+      <div class="flow">
+        <span class="step">Image</span>
+        <span class="arrow">→</span>
+        <span class="step">Human</span>
+        <span class="arrow">→</span>
+        <span class="step">Human response</span>
+      </div>
+
+      <div class="flow">
+        <span class="step">Image</span>
+        <span class="arrow">→</span>
+        <span class="step">Model</span>
+        <span class="arrow">→</span>
+        <span class="step">Model output</span>
+      </div>
+
+      <p>
+        The model output depends on the task.
+        In a recognition task, the model may output probabilities for object categories.
+        In a rating task, the model outputs a score.
+        In an n-back task, the model outputs a memorability score for each image.
+      </p>
+
+      <div class="warning">
+        <strong>Important:</strong> the model does not literally press keys or move a mouse.
+        Instead, the notebook converts the model's prediction into a value that can be compared
+        with the human data.
+      </div>
+    </section>
+
+
+    <section id="demo">
+      <h2>3. Demo notebooks</h2>
+
+      <p>
+        Before using the task-matched notebooks, there are demo notebooks.
+        These notebooks are simpler. They show how to load a pretrained model,
+        give it one image, and read the model prediction.
+      </p>
+
+      <div class="callout">
+        <strong>Important distinction:</strong>
+        the demo notebooks test models on the kind of task they were originally trained for.
+        The task-matched notebooks test models in the same format as the human experiments.
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Notebook</th>
+            <th>What the model was trained to do</th>
+            <th>What goes in</th>
+            <th>What comes out</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>AlexNet_demo.ipynb</code></td>
+            <td>
+              AlexNet was trained for image classification.
+              It learns to look at an image and predict what object category is present.
+            </td>
+            <td>
+              One image.
+            </td>
+            <td>
+              A list of predicted object labels, usually ordered from most likely to least likely.
+            </td>
+          </tr>
+          <tr>
+            <td><code>Facial_emotion.ipynb</code></td>
+            <td>
+              The facial emotion model was trained to classify facial expressions.
+              It learns to look at a face and predict an emotion label.
+            </td>
+            <td>
+              One face image.
+            </td>
+            <td>
+              A list of predicted emotion labels and confidence scores.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>AlexNet demo</h3>
+
+      <p>
+        In the AlexNet demo, the model is used in its standard way.
+        The notebook loads a pretrained image-classification model,
+        prepares one image, runs the image through the model, and prints the top predictions.
+      </p>
+
+      <div class="flow">
+        <span class="step">One image</span>
+        <span class="arrow">→</span>
+        <span class="step">AlexNet</span>
+        <span class="arrow">→</span>
+        <span class="step">Object label predictions</span>
+      </div>
+
+      <p>
+        The output is not a human 2AFC response yet.
+        It is simply the model saying which object categories it thinks are most likely.
+      </p>
+
+      <pre><code class="language-python">model = models.alexnet(pretrained=True)
+model.eval()
+
+with torch.no_grad():
+    output = model(input_image)
+
+_, indices = torch.topk(output, 5)</code></pre>
+
+      <p>
+        In simple terms, this asks:
+        <strong>What object does the pretrained model think is in this image?</strong>
+      </p>
+
+      <h3>Facial emotion demo</h3>
+
+      <p>
+        In the facial emotion demo, a pretrained face-expression model is used in its standard way.
+        The notebook gives the model one face image and gets predicted emotion labels.
+      </p>
+
+      <div class="flow">
+        <span class="step">One face image</span>
+        <span class="arrow">→</span>
+        <span class="step">Emotion model</span>
+        <span class="arrow">→</span>
+        <span class="step">Emotion labels + scores</span>
+      </div>
+
+      <pre><code class="language-python">clf = pipeline(
+    "image-classification",
+    model="trpakov/vit-face-expression"
+)
+
+results = clf(img)</code></pre>
+
+      <p>
+        In simple terms, this asks:
+        <strong>What emotion does the pretrained model think this face shows?</strong>
+      </p>
+
+      <h3>Why do we include demo notebooks?</h3>
+
+      <p>
+        The demo notebooks are useful because they introduce the basic model workflow:
+      </p>
+
+      <ul>
+        <li>load a pretrained model,</li>
+        <li>prepare an image so the model can read it,</li>
+        <li>run the image through the model,</li>
+        <li>look at the model prediction.</li>
+      </ul>
+
+      <p>
+        After understanding this basic idea, the task-matched notebooks extend the same logic
+        to the full psychophysics tasks.
+      </p>
+
+      <div class="success">
+        <strong>Demo notebook output:</strong>
+        demo notebooks do not save the main human-comparison CSV files.
+        They mainly show predictions for one example image.
+      </div>
+    </section>
+
+    <section id="files">
+      <h2>4. Task-matched notebook guide</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Notebook</th>
+            <th>Human task</th>
+            <th>What the model does</th>
+            <th>Output file</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>obj_2afc.ipynb</code></td>
+            <td>
+              Object 2AFC: humans choose the correct object from two options.
+            </td>
+            <td>
+              A recognition model predicts object probabilities.
+              The code converts those probabilities into 2AFC-style image accuracy.
+            </td>
+            <td><code>results/obj_2afc.csv</code></td>
+          </tr>
+          <tr>
+            <td><code>draw_2afc.ipynb</code></td>
+            <td>
+              Drawing 2AFC: humans choose the correct object from two options,
+              but the image is a drawing or sketch.
+            </td>
+            <td>
+              The same recognition model is tested on drawings.
+              The code again converts probabilities into 2AFC-style image accuracy.
+            </td>
+            <td><code>results/draw_2afc.csv</code></td>
+          </tr>
+          <tr>
+            <td><code>ratings.ipynb</code></td>
+            <td>
+              Ratings: humans rate face images.
+            </td>
+            <td>
+              A face-rating model predicts one score for each face image.
+            </td>
+            <td><code>results/ratings.csv</code></td>
+          </tr>
+          <tr>
+            <td><code>n_back.ipynb</code></td>
+            <td>
+              N-back: humans perform a memory-related task with images.
+            </td>
+            <td>
+              A memorability model predicts one memorability score for each image.
+            </td>
+            <td><code>results/n_back.csv</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="success">
+        All notebooks save a simple CSV table with one row per image.
+        This makes it easy to compare model outputs with human behavior image by image.
+      </div>
+    </section>
+
+    <section id="shared-code">
+      <h2>5. Shared code: loading images in the right order</h2>
+
+      <p>
+        The file <code>utils.py</code> contains helper code used by the notebooks.
+        This keeps the notebooks shorter and easier to read.
+      </p>
+
+      <h3>Sorting images</h3>
+
+      <p>
+        Images are named like this:
+      </p>
+
+      <pre><code>im1.png
+im2.png
+im3.png
+...</code></pre>
+
+      <p>
+        For face ratings, the images are <code>.jpg</code> files:
+      </p>
+
+      <pre><code>im1.jpg
+im2.jpg
+im3.jpg
+...</code></pre>
+
+      <p>
+        The helper function <code>sort_images</code> extracts the number from each file name
+        and sorts the images in numerical order.
+      </p>
+
+      <pre><code class="language-python">def sort_images(x):
+    xs = []
+    for im in x:
+        t = int(os.path.splitext(os.path.basename(im))[0].replace("im", ""))
+        xs.append(t)
+    return list(sorted(xs))</code></pre>
+
+      <p>
+        This matters because we need the model result for <code>im12.png</code>
+        to line up with the human result for <code>im12.png</code>.
+      </p>
+
+      <h3>Preparing images for recognition models</h3>
+
+      <p>
+        The recognition model needs images to be resized and normalized before it can use them.
+        The helper code resizes images to <code>224 × 224</code> and applies the same normalization
+        expected by common image models.
+      </p>
+
+      <pre><code class="language-python">im_transforms = transforms.Compose([
+    transforms.Resize((224, 224)),
+    transforms.Lambda(lambda x: (x / 255.0)),
+    transforms.Normalize(
+        mean=[0.485, 0.456, 0.406],
+        std=[0.229, 0.224, 0.225]
+    ),
+])</code></pre>
+
+      <p>
+        The helper function <code>make_val_loader</code> loads all task images,
+        applies these transformations, stacks them into one tensor, and creates a
+        <code>DataLoader</code>.
+      </p>
+
+      <div class="callout">
+        <strong>Simple version:</strong> the helper code makes sure images are loaded,
+        sorted, resized, normalized, and ready for the model.
+      </div>
+    </section>
+
+    <section id="two-afc">
+      <h2>6. Object and drawing 2AFC notebooks</h2>
+
+      <p>
+        The notebooks <code>obj_2afc.ipynb</code> and <code>draw_2afc.ipynb</code>
+        use the same logic. The difference is the image folder:
+      </p>
+
+      <ul>
+        <li><code>obj_2afc.ipynb</code> uses <code>../images/obj_2AFC</code></li>
+        <li><code>draw_2afc.ipynb</code> uses <code>../images/draw_2AFC</code></li>
+      </ul>
+
+      <h3>What is a 2AFC task?</h3>
+
+      <p>
+        2AFC means <strong>two-alternative forced choice</strong>.
+        The participant chooses between two possible answers.
+      </p>
+
+      <p>
+        For example:
+      </p>
+
+      <div class="flow">
+        <span class="step">Image of a bear</span>
+        <span class="arrow">→</span>
+        <span class="step">Choice: bear or dog?</span>
+        <span class="arrow">→</span>
+        <span class="step">Correct answer: bear</span>
+      </div>
+
+      <p>
+        The model does not choose by clicking a button.
+        Instead, it gives a probability for each object class.
+        The code uses these probabilities to ask which option the model would prefer.
+      </p>
+
+      <h3>Model used in both 2AFC notebooks</h3>
+
+      <p>
+        The notebooks currently load <code>AlexNet</code>.
+        AlexNet starts as a pretrained image-classification model.
+        Then the final layer is changed so the model predicts 10 task categories.
+        Finally, fine-tuned weights are loaded from <code>checkpoints/alexnet_fine_tuned.pth</code>.
+      </p>
+
+      <pre><code class="language-python">model = models.alexnet(pretrained=True)
+weights = torch.load("checkpoints/alexnet_fine_tuned.pth")
+
+model.classifier[6] = nn.Linear(model.classifier[6].in_features, 10)
+model.load_state_dict(weights)
+model.eval()</code></pre>
+
+      <p>
+        The notebooks also include commented code for other possible models,
+        such as <code>ResNet50</code> and <code>ConvNeXt</code>.
+      </p>
+
+      <h3>Step 1: Load task images and labels</h3>
+
+      <p>
+        For object 2AFC:
+      </p>
+
+      <pre><code class="language-python">data_loader = make_val_loader("../images/obj_2AFC", 8)
+
+labels = [0, 0, 1, 1, 2, 2, 2, 3, 4, 4, 5, 6, 6, 7, 7, 8]</code></pre>
+
+      <p>
+        For drawing 2AFC:
+      </p>
+
+      <pre><code class="language-python">data_loader = make_val_loader("../images/draw_2AFC", 4)
+
+labels = [0, 1, 4, 5]</code></pre>
+
+      <p>
+        The labels tell the code which object category is correct for each image.
+      </p>
+
+      <h3>Step 2: Get model probabilities</h3>
+
+      <p>
+        The model is run on every image.
+        Its output is in the form of probabilities per class.
+      </p>
+
+      <pre><code class="language-python">probabilities = []
+
+with torch.no_grad():
+    for inputs in data_loader:
+        inputs = inputs[0]
+        output = model(inputs)
+        output = torch.nn.functional.softmax(output, dim=-1)
+        probabilities.append(output.detach().cpu().numpy())
+
+probabilities = np.concatenate(probabilities, axis=0)</code></pre>
+
+      <p>
+        After this step, each image has 10 probabilities:
+        one probability for each possible object category.
+      </p>
+
+      <h3>Step 3: Check normal classification accuracy</h3>
+
+      <p>
+        The notebook first checks the usual model accuracy.
+        This asks whether the model's highest-probability category is the correct category.
+      </p>
+
+      <pre><code class="language-python">preds = np.argmax(probabilities, axis=1)
+(preds == labels).mean()</code></pre>
+
+      <p>
+        This is useful, but it is not exactly the human 2AFC task.
+        Humans choose between two options, not all 10 categories at once.
+      </p>
+
+      <h3>Step 4: Convert probabilities into 2AFC-like accuracy</h3>
+
+      <p>
+        This is the key step. The code compares the model probability for the correct answer
+        with the probability for each possible wrong answer.
+      </p>
+
+      <p>
+        For each possible pair, the code computes:
+      </p>
+
+      <pre><code class="language-python">score =
+    probability_correct_answer /
+    (probability_correct_answer + probability_wrong_answer)</code></pre>
+
+      <p>
+        This gives a model 2AFC score.
+        If the model gives more probability to the correct answer than to the wrong answer,
+        the score is high. If it gives more probability to the wrong answer, the score is low.
+      </p>
+
+      <pre><code class="language-python">image_scores, model_choices = create_image_level_accuracies(
+    probabilities,
+    labels=labels
+)</code></pre>
+
+      <p>
+        The output <code>image_scores</code> gives one 2AFC-style accuracy score per image.
+        The output <code>model_choices</code> is a matrix showing the model's score for each image
+        against each possible choice category.
+      </p>
+
+      <div class="success">
+        <strong>Model output for 2AFC:</strong>
+        the final model output saved to the CSV is <code>accuracy</code>,
+        one value per image.
+      </div>
+
+      <h3>Step 5: Save results</h3>
+
+      <p>
+        Object 2AFC saves:
+      </p>
+
+      <pre><code class="language-python">df = pd.DataFrame({
+    "image_name": images,
+    "image_index": indices,
+    "accuracy": image_scores
+})
+
+df.to_csv("results/obj_2afc.csv", index=False)</code></pre>
+
+      <p>
+        Drawing 2AFC saves the same kind of table:
+      </p>
+
+      <pre><code class="language-python">df.to_csv("results/draw_2afc.csv", index=False)</code></pre>
+    </section>
+
+    <section id="ratings">
+      <h2>7. Ratings notebook</h2>
+
+      <p>
+        The notebook <code>ratings.ipynb</code> tests a face-rating model on the images
+        from the ratings task.
+      </p>
+
+      <h3>What goes in?</h3>
+
+      <p>
+        The notebook reads face images from:
+      </p>
+
+      <pre><code>../images/ratings/</code></pre>
+
+      <p>
+        These files are <code>.jpg</code> images.
+      </p>
+
+      <pre><code class="language-python">indices = sort_images(os.listdir("../images/ratings/"))
+
+image_path = f"../images/ratings/im{indices[img_idx]}.jpg"</code></pre>
+
+      <h3>What model is used?</h3>
+
+      <p>
+        The notebook uses a model made open-source through a GitHub repository to download at the beginning.
+        The model weights are loaded from:
+      </p>
+
+      <pre><code>checkpoints/ComboNet_SCUTFBP5500.pth</code></pre>
+
+      <pre><code class="language-python">fbp = FacialPredictor(
+    pretrained_model_path="checkpoints/ComboNet_SCUTFBP5500.pth"
+)</code></pre>
+
+      <h3>What does the model output?</h3>
+
+      <p>
+        For each face image, the model outputs one numerical rating score (between 1 and 5).
+      </p>
+
+      <pre><code class="language-python">ratings = []
+
+for img_idx in range(len(indices)):
+    image_path = f"../images/ratings/im{indices[img_idx]}.jpg"
+    rating = fbp.infer(image_path)
+    ratings.append(rating)</code></pre>
+
+      <p>
+        The function <code>fbp.infer</code> loads one image, prepares it for the model,
+        runs the model, and returns one number.
+      </p>
+
+      <div class="success">
+        <strong>Model output for ratings:</strong>
+        the final model output saved to the CSV is <code>score</code>,
+        one rating score per image.
+      </div>
+
+      <h3>What gets saved?</h3>
+
+      <pre><code class="language-python">df = pd.DataFrame({
+    "image_name": images,
+    "image_index": indices,
+    "score": np.array(ratings)
+})
+
+df.to_csv("results/ratings.csv", index=False)</code></pre>
+    </section>
+
+    <section id="nback">
+      <h2>8. N-back notebook</h2>
+
+      <p>
+        The notebook <code>n_back.ipynb</code> tests a memorability model on the images
+        used in the n-back task.
+      </p>
+
+      <h3>What goes in?</h3>
+
+      <p>
+        The notebook reads images from:
+      </p>
+
+      <pre><code>../images/n_back/</code></pre>
+
+      <p>
+        These files are <code>.png</code> images.
+      </p>
+
+      <pre><code class="language-python">indices = sort_images(os.listdir("../images/n_back/"))
+
+image_path = f"../images/n_back/im{indices[img_idx]}.png"</code></pre>
+
+      <h3>What model is used?</h3>
+
+      <p>
+        The notebook uses <code>ViTMem</code>, a model that predicts image memorability.
+      </p>
+
+      <pre><code class="language-python">from vitmem import ViTMem
+
+vitmem = ViTMem()</code></pre>
+
+      <h3>What does the model output?</h3>
+
+      <p>
+        For each image, the model outputs one memorability score.
+        This score can be compared with behavior from the memory-related task.
+      </p>
+
+      <pre><code class="language-python">scores_vitmem = []
+
+for img_idx in range(len(indices)):
+    image_path = f"../images/n_back/im{indices[img_idx]}.png"
+    memorability = vitmem(image_path)
+    scores_vitmem.append(memorability)</code></pre>
+
+      <div class="success">
+        <strong>Model output for n-back:</strong>
+        the final model output saved to the CSV is <code>score</code>,
+        one memorability score per image.
+      </div>
+
+      <h3>What gets saved?</h3>
+
+      <pre><code class="language-python">df = pd.DataFrame({
+    "image_name": images,
+    "image_index": indices,
+    "score": np.array(scores_vitmem)
+})
+
+df.to_csv("results/n_back.csv", index=False)</code></pre>
+    </section>
+
+    <section id="outputs">
+      <h2>9. Output files</h2>
+
+      <p>
+        Every simplified notebook saves one CSV file.
+        Each row corresponds to one image.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Notebook</th>
+            <th>Output CSV</th>
+            <th>Columns</th>
+            <th>Meaning of model output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>obj_2afc.ipynb</code></td>
+            <td><code>results/obj_2afc.csv</code></td>
+            <td><code>image_name</code>, <code>image_index</code>, <code>accuracy</code></td>
+            <td>
+              2AFC-style object recognition accuracy for each object image.
+            </td>
+          </tr>
+          <tr>
+            <td><code>draw_2afc.ipynb</code></td>
+            <td><code>results/draw_2afc.csv</code></td>
+            <td><code>image_name</code>, <code>image_index</code>, <code>accuracy</code></td>
+            <td>
+              2AFC-style object recognition accuracy for each drawing image.
+            </td>
+          </tr>
+          <tr>
+            <td><code>ratings.ipynb</code></td>
+            <td><code>results/ratings.csv</code></td>
+            <td><code>image_name</code>, <code>image_index</code>, <code>score</code></td>
+            <td>
+              Predicted face rating score for each image.
+            </td>
+          </tr>
+          <tr>
+            <td><code>n_back.ipynb</code></td>
+            <td><code>results/n_back.csv</code></td>
+            <td><code>image_name</code>, <code>image_index</code>, <code>score</code></td>
+            <td>
+              Predicted memorability score for each image.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <strong>Most important columns:</strong>
+        <code>image_name</code> and <code>image_index</code>.
+        These keep the link between each image, the model output, and the human data.
+      </div>
+    </section>
+
+    <section id="summary">
+      <h2>10. Summary</h2>
+
+      <ul>
+        <li>The goal is to test models like subjects.</li>
+        <li>Each notebook loads the task images.</li>
+        <li>The images are sorted so the model output stays linked to the correct image.</li>
+        <li>The model produces one output per image.</li>
+        <li>For <code>obj_2afc.ipynb</code>, the output is <code>accuracy</code>.</li>
+        <li>For <code>draw_2afc.ipynb</code>, the output is <code>accuracy</code>.</li>
+        <li>For <code>ratings.ipynb</code>, the output is <code>score</code>.</li>
+        <li>For <code>n_back.ipynb</code>, the output is <code>score</code>.</li>
+        <li>Each notebook saves a CSV file with <code>image_name</code> and <code>image_index</code>.</li>
+        <li>Those columns allow model behavior and human behavior to be compared image by image.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Main takeaway:</strong> the point is not only to test whether the model performs well.
+        The point is to test whether the model behaves like a human subject on the same task,
+        and to find where that model-human similarity breaks down.
+      </div>
+    </section>
+
+
+    <section id="checklist">
+      <h2>11. Student checklist</h2>
+
+      <p>
+        Use this checklist when you want to test a model like a subject.
+        You can change the model, change the image set, or test altered images.
+        The important thing is to keep the task structure and output format clear.
+      </p>
+
+      <h3>1. Choose the task</h3>
+
+      <p>
+        Start by choosing the notebook that matches the task you want to test.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Notebook</th>
+            <th>Model output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Object 2AFC</td>
+            <td><code>obj_2afc.ipynb</code></td>
+            <td><code>accuracy</code></td>
+          </tr>
+          <tr>
+            <td>Drawing 2AFC</td>
+            <td><code>draw_2afc.ipynb</code></td>
+            <td><code>accuracy</code></td>
+          </tr>
+          <tr>
+            <td>Ratings</td>
+            <td><code>ratings.ipynb</code></td>
+            <td><code>score</code></td>
+          </tr>
+          <tr>
+            <td>N-back / memorability</td>
+            <td><code>n_back.ipynb</code></td>
+            <td><code>score</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. Choose or change the model</h3>
+
+      <p>
+        You can test different models.
+        For example, in the 2AFC notebooks, the model currently uses AlexNet:
+      </p>
+
+      <pre><code class="language-python">model = models.alexnet(pretrained=True)</code></pre>
+
+      <p>
+        Students can replace it with another model, such as ResNet50:
+      </p>
+
+      <pre><code class="language-python">model = models.resnet50(pretrained=True)</code></pre>
+
+      <p>
+        Or they can test another architecture, such as ConvNeXt:
+      </p>
+
+      <pre><code class="language-python">model = timm.create_model("convnext_base", pretrained=True)</code></pre>
+
+      <p>
+        After changing the model, make sure the model is in evaluation mode:
+      </p>
+
+      <pre><code class="language-python">model.eval()</code></pre>
+
+      <div class="warning">
+        <strong>Check carefully:</strong>
+        if you change the model, the output layer may also need to be adjusted so the model
+        predicts the correct number of task categories.
+      </div>
+
+      <h3>3. Make sure the model output matches the task</h3>
+
+      <p>
+        Different tasks need different outputs.
+      </p>
+
+      <ul>
+        <li>
+          For <strong>2AFC tasks</strong>, the model should output probabilities over object classes.
+          The code converts these probabilities into 2AFC-style <code>accuracy</code>.
+        </li>
+        <li>
+          For <strong>ratings</strong>, the model should output one rating <code>score</code> per image.
+        </li>
+        <li>
+          For <strong>n-back</strong>, the model should output one memorability
+          <code>score</code> per image.
+        </li>
+      </ul>
+
+      <div class="callout">
+        Ask yourself: <strong>Does my model output one value that makes sense for this task?</strong>
+      </div>
+
+      <h3>4. Choose or change the image folder</h3>
+
+      <p>
+        You can test the original task images or a new image set.
+        For example:
+      </p>
+
+      <pre><code class="language-python">data_loader = make_val_loader("../images/obj_2AFC", 8)</code></pre>
+
+      <p>
+        can be changed to a folder containing altered images:
+      </p>
+
+      <pre><code class="language-python">data_loader = make_val_loader("../images/obj_2AFC_blur", 8)</code></pre>
+
+      <p>
+        or:
+      </p>
+
+      <pre><code class="language-python">data_loader = make_val_loader("../images/obj_2AFC_noise", 8)</code></pre>
+
+      <p>
+        This is useful for testing whether the model is robust to image changes.
+      </p>
+
+      <h3>5. Keep the same image naming format</h3>
+
+      <p>
+        The code expects image names to contain image numbers.
+        For most tasks, images should be named like this:
+      </p>
+
+      <pre><code>im1.png
+im2.png
+im3.png
+...</code></pre>
+
+      <p>
+        For ratings, images may be named like this:
+      </p>
+
+      <pre><code>im1.jpg
+im2.jpg
+im3.jpg
+...</code></pre>
+
+      <p>
+        The image number is important because it keeps the model output aligned with the human data.
+      </p>
+
+      <h3>6. Check the labels for 2AFC tasks</h3>
+
+      <p>
+        For 2AFC tasks, the labels tell the code which category is correct for each image.
+        Example:
+      </p>
+
+      <pre><code class="language-python">labels = [0, 0, 1, 1, 2, 2, 2, 3, 4, 4, 5, 6, 6, 7, 7, 8]</code></pre>
+
+      <p>
+        Before running a new image set, check that the number of labels matches the number of images:
+      </p>
+
+      <pre><code class="language-python">len(labels)</code></pre>
+
+      <p>
+        Also check that each label corresponds to the correct image.
+      </p>
+
+      <h3>7. Test altered images</h3>
+
+      <p>
+        You can create altered versions of the images and test the model again.
+        Examples include:
+      </p>
+
+      <ul>
+        <li>blurred images,</li>
+        <li>noisy images,</li>
+        <li>low-contrast images,</li>
+        <li>cropped images,</li>
+        <li>rotated images,</li>
+        <li>grayscale images.</li>
+      </ul>
+
+      <div class="callout">
+        Scientific question:
+        <strong>Does the model still behave like humans when the images are altered?</strong>
+      </div>
+
+      <h3>8. Run the notebook from top to bottom</h3>
+
+      <p>
+        After changing the model or images, run all cells from the beginning.
+        Then check that the notebook produced one output per image.
+      </p>
+
+      <p>
+        For 2AFC tasks:
+      </p>
+
+      <pre><code class="language-python">len(image_scores)</code></pre>
+
+      <p>
+        For ratings:
+      </p>
+
+      <pre><code class="language-python">len(ratings)</code></pre>
+
+      <p>
+        For n-back:
+      </p>
+
+      <pre><code class="language-python">len(scores_vitmem)</code></pre>
+
+      <h3>9. Save results with a clear file name</h3>
+
+      <p>
+        Avoid overwriting previous results.
+        Instead of always saving:
+      </p>
+
+      <pre><code class="language-python">df.to_csv("results/obj_2afc.csv", index=False)</code></pre>
+
+      <p>
+        use a more specific file name:
+      </p>
+
+      <pre><code class="language-python">df.to_csv("results/obj_2afc_alexnet_original.csv", index=False)</code></pre>
+
+      <p>
+        or:
+      </p>
+
+      <pre><code class="language-python">df.to_csv("results/obj_2afc_alexnet_blur.csv", index=False)</code></pre>
+
+      <p>
+        Good file names include the task, model, and image condition.
+      </p>
+
+      <pre><code>obj_2afc_alexnet_original.csv
+obj_2afc_resnet50_original.csv
+obj_2afc_alexnet_blur.csv
+draw_2afc_alexnet_noise.csv
+ratings_combonet_original.csv
+n_back_vitmem_contrast.csv</code></pre>
+
+      <h3>10. Check the output CSV</h3>
+
+      <p>
+        Every output file should have one row per image.
+      </p>
+
+      <p>
+        For 2AFC tasks:
+      </p>
+
+      <pre><code>image_name, image_index, accuracy</code></pre>
+
+      <p>
+        For ratings and n-back:
+      </p>
+
+      <pre><code>image_name, image_index, score</code></pre>
+
+      <p>
+        You can quickly check the table with:
+      </p>
+
+      <pre><code class="language-python">df.head()</code></pre>
+
+      <h3>Final checklist before saving</h3>
+
+      <div class="success">
+        <p><code>[ ]</code> I chose the correct notebook.</p>
+        <p><code>[ ]</code> I know what task the model is doing.</p>
+        <p><code>[ ]</code> I know what the model output means.</p>
+        <p><code>[ ]</code> I used the correct image folder.</p>
+        <p><code>[ ]</code> My images are named correctly.</p>
+        <p><code>[ ]</code> My labels match my images.</p>
+        <p><code>[ ]</code> I changed the output CSV name if needed.</p>
+        <p><code>[ ]</code> The CSV has one row per image.</p>
+        <p><code>[ ]</code> The CSV keeps <code>image_name</code> and <code>image_index</code>.</p>
+        <p><code>[ ]</code> I can compare the model output with human behavior.</p>
+      </div>
+    </section>
+
+    <section id="validation">
+      <h2>12. How do we validate the models?</h2>
+
+      <p>
+        After the notebooks save model outputs, we compare the model results with human behavior.
+      </p>
+
+      <h3>Question 1: Does the model do the task?</h3>
+
+      <p>
+        For 2AFC tasks, we check whether the model has high accuracy.
+        For rating and n-back tasks, we check whether the model gives reasonable scores.
+      </p>
+
+      <h3>Question 2: Where does the model break?</h3>
+
+      <p>
+        The failures are important.
+        If models fail on specific images, this tells us what the model
+        does not capture about human behavior.
+      </p>
+
+    </section>
+
+    <section id="summary">
+      <h2>13. Summary</h2>
+
+      <ul>
+        <li>The goal is to test models like subjects.</li>
+        <li>Each notebook loads the task images.</li>
+        <li>The images are sorted so the model output stays linked to the correct image.</li>
+        <li>The model produces one output per image.</li>
+        <li>For <code>obj_2afc.ipynb</code>, the output is <code>accuracy</code>.</li>
+        <li>For <code>draw_2afc.ipynb</code>, the output is <code>accuracy</code>.</li>
+        <li>For <code>ratings.ipynb</code>, the output is <code>score</code>.</li>
+        <li>For <code>n_back.ipynb</code>, the output is <code>score</code>.</li>
+        <li>Each notebook saves a CSV file with <code>image_name</code> and <code>image_index</code>.</li>
+        <li>Those columns allow model behavior and human behavior to be compared image by image.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Main takeaway:</strong> the point is not only to test whether the model performs well.
+        The point is to test whether the model behaves like a human subject on the same task,
+        and to find where that model-human similarity breaks down.
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Simplified ANN tutorial for the psychophysics task repository
+  </footer>
+<div class="cvr-floating-home"><a href="../index.html">Hub</a></div>
+</body>
+</html>

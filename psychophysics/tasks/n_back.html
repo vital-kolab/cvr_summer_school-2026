@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>N-Back paradigm - new or repeated images</title>
+
+    <script src="https://unpkg.com/jspsych@6.3.1/jspsych.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-html-slider-response.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-html-button-response.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-image-button-response.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-image-slider-response.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-fullscreen.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-preload.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-call-function.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-survey-multi-choice.js"></script>
+    <script src="https://unpkg.com/jspsych@6.3.1/plugins/jspsych-survey-text.js"></script>
+    <link href="https://unpkg.com/jspsych@6.3.1/css/jspsych.css" rel="stylesheet" type="text/css">
+
+    <script src="utils.js"></script>
+</head>
+<body style="background-color:grey;">
+
+  <script>
+    
+    const visualAngle = 8; // Image size on the screen. Bigger number = bigger image.
+    const viewingDistance = 20; // Approximate viewing distance in inches.
+    const stimulusSize = calculateStimulusSize(visualAngle, viewingDistance);
+    const spaceBetweenLabels = calculateStimulusSize(8, viewingDistance) / 2;
+    
+    // ===== STUDENTS: EDIT THIS SECTION =====
+    // This is an N-Back task.
+    // The participant sees images one at a time.
+    // They answer whether the image is Novel or Repeated.
+    //
+    // val = image numbers to show, in order.
+    // If the same number appears again, the same image is repeated.
+    // Example: [161, 161] shows im161.png twice.
+    //
+    // correct = correct answer for each trial.
+    // 0 = Novel
+    // 1 = Repeated
+    //
+    // IMPORTANT: val and correct must have the same length.
+    var val = [161,161,115,123,66,153,31,47,26,128,96,32,115,120,22];
+    var correct = [0,1,0,0,0,0,0,0,0,0,0,0,1,0,0];
+
+
+    var images = [];
+    for (let i = 0; i < val.length; i++) {
+        images.push('../../images/n_back/im' + val[i] + '.png');
+    }
+    
+    // Timeline: this is the list of screens shown to the participant.
+    let timeline = [];
+    
+    // Load images before the task starts. This helps avoid delays during the task.
+    let preload = {
+        type: 'preload',
+        images: images,
+        message: '<div style="font-size: 24px; text-align: center;"><strong>Loading the experiment... (1/2)</strong></div>',
+        show_progress_bar: true
+    };
+    timeline.push(preload);
+
+    timeline.push(fullscreen);
+    timeline.push(consent_form);
+    timeline.push(intro_info);
+    timeline.push(survey);
+
+    // Welcome page: explain the task in simple words.
+    var welcome = {
+        type: "html-keyboard-response",
+        stimulus: '<div style="font-size:22px;">' +
+            "<p><strong>Welcome!</strong></p>" +
+            "<p>In this task, you will see images one at a time.</p>" +
+            "<p>Click <strong>Novel</strong> if you have not seen the image before in this experiment.</p>" +
+            "<p>Click <strong>Repeated</strong> if you have already seen the image before in this experiment.</p>" +
+            "<p>Please look at the center <strong>+</strong> before each image appears.</p>" +
+            "<p>Press any key to begin.</p></div>",
+    };
+
+    timeline.push(welcome);
+    
+    // These variables count performance during the task.
+    var correct_count = 0;
+    var incorrect_count = 0;  
+
+    
+    // Trial loop: this repeats the same steps for every image.
+    for (let i = 0; i < images.length; i++) {
+
+        // 1/2 Fixation: participant looks at the center cross.
+        timeline.push({
+            type: 'html-keyboard-response',
+            stimulus: '<div style="font-size: 60px;">+</div>',
+            choices: jsPsych.NO_KEYS,
+            trial_duration: 500
+        });
+
+        timeline.push({
+            type: 'image-button-response',
+            stimulus: images[i],
+            stimulus_height: stimulusSize,
+            choices: ['Novel', 'Repeated'],
+            prompt: "<p>Has this image been shown before?</p>",
+            trial_duration: 3000,
+            stimulus_duration: 200,
+            data: {
+                image_index: i,
+                correct_response: correct[i],
+            },
+            on_finish: function (data) {
+                const userPressed = parseInt(data.response);
+                // console.log(data.response, data.correct_response)
+                data.correct = userPressed === data.correct_response;
+
+                if (data.correct) {
+                    correct_count++;
+                } else {
+                    incorrect_count++;
+                }
+            }
+            });
+    };
+
+    // Start the experiment and save the data at the end.
+    jsPsych.init({
+        timeline: timeline,
+        show_progress_bar: true,
+        on_finish: function() {
+                    var csv = jsPsych.data.get().csv();
+                    let subject_id = Math.floor(100000 + Math.random() * 900000); // random 6-digit participant ID
+                    var filename = 'n_back_' + subject_id + '.csv';
+                    downloadCSV(csv, filename);
+                }
+    });
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+"success","timeout","failed_images","failed_audio","failed_video","trial_type","trial_index","time_elapsed","internal_node_id","rt","stimulus","response","question_order","correct_choice","choices","correct"
+"true","false","[]","[]","[]","preload","0","7","0.0-0.0","","","","","","",""
+"true","false","[]","[]","[]","preload","1","9","0.0-1.0","","","","","","",""
+"true","","","","","fullscreen","2","4813","0.0-2.0","","","","","","",""
+"","","","","","html-button-response","3","5911","0.0-3.0","1097.0999999642372"," <p>This task is part of a York University research project. Taking part is your choice.</p> 
+                <p>We do not collect your name. We save your responses and the time when you completed the task.</p>
+                <p>The results may be used in talks, papers, or future analyses.</p>
+                    <p>By clicking SUBMIT, you confirm that:</p>
+                <ul>
+                    <li>You are between 18 to 45 years of age,</li>
+                    <li>You do not have uncorrected vision problems,</li>
+                    <li>You have never had a seizure,</li>
+                    <li>You have never been diagnosed with a neurological disorder,</li>
+                    <li>You agree to complete this task voluntarily.</li>
+                </ul>","0","","","",""
+"","","","","","html-button-response","4","6861","0.0-4.0","949.1000000238419"," <p>Please close other tabs or programs while running this task. This helps the task run smoothly.</p> 
+                <p>Please read the instructions carefully.</p>
+                <p>You will look at images and click responses. The task usually takes 5 to 10 minutes.</p>
+                <p>If this task could make you uncomfortable, please do not continue.</p>
+                </ul>","0","","","",""
+"","","","","","survey-multi-choice","5","10645","0.0-5.0","3782","","{""Age"":""26-30"",""Gender"":""Female""}","[0,1]","","",""
+"","","","","","html-keyboard-response","6","11856","0.0-6.0","1210.8999999761581","<div style='font-size: 24px; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center;'><div style='display: block;'><span style='font-weight: bold;'>Welcome!</span><br><br>In this task, you will see one image very briefly. Then you will see two answer options. Click the option that best matches the image you just saw.<br><br>Please look at the center <span style='font-weight: bold;'>+</span> before each image appears.<br><br><span style='font-weight: bold;'>Press any key to begin.</span></div></div>"," ","","","",""
+"","","","","","html-keyboard-response","7","12358","0.0-7.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","8","12463","0.0-8.0","null","../../images/obj_2AFC/im81.png","null","","","",""
+"","","","","","html-keyboard-response","9","12565","0.0-9.0","null","","null","","","",""
+"","","","","","html-button-response","10","13494","0.0-10.0","927.3000000119209","","0","","4","[4,0]","true"
+"","","","","","html-keyboard-response","11","14496","0.0-11.0","null","","null","","","",""
+"","","","","","html-keyboard-response","12","14998","0.0-12.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","13","15100","0.0-13.0","null","../../images/obj_2AFC/im63.png","null","","","",""
+"","","","","","html-keyboard-response","14","15202","0.0-14.0","null","","null","","","",""
+"","","","","","html-button-response","15","15727","0.0-15.0","525.5","","0","","3","[5,3]","false"
+"","","","","","html-keyboard-response","16","16729","0.0-16.0","null","","null","","","",""
+"","","","","","html-keyboard-response","17","17231","0.0-17.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","18","17334","0.0-18.0","null","../../images/obj_2AFC/im54.png","null","","","",""
+"","","","","","html-keyboard-response","19","17436","0.0-19.0","null","","null","","","",""
+"","","","","","html-button-response","20","18777","0.0-20.0","1340","","1","","2","[9,2]","true"
+"","","","","","html-keyboard-response","21","19779","0.0-21.0","null","","null","","","",""
+"","","","","","html-keyboard-response","22","20281","0.0-22.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","23","20384","0.0-23.0","null","../../images/obj_2AFC/im31.png","null","","","",""
+"","","","","","html-keyboard-response","24","20486","0.0-24.0","null","","null","","","",""
+"","","","","","html-button-response","25","22027","0.0-25.0","1540.5999999642372","","1","","1","[2,1]","true"
+"","","","","","html-keyboard-response","26","23029","0.0-26.0","null","","null","","","",""
+"","","","","","html-keyboard-response","27","23532","0.0-27.0","null","<div style=""font-size: 60px;"">+</div>","null","","","",""
+"","","","","","image-button-response","28","23634","0.0-28.0","null","../../images/obj_2AFC/im142.png","null","","","",""
+"","","","","","html-keyboard-response","29","23736","0.0-29.0","null","","null","","","",""
+"","","","","","html-button-response","30","25911","0.0-30.0","2173.699999988079","","0","","7","[5,7]","false"
+"","","","","","html-keyboard-response","31","26912","0.0-31.0","null","","null","","","",""
