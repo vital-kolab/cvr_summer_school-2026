@@ -11,13 +11,13 @@
 <body>
   <main class="page">
     <div class="topbar">
-      <a class="brand" href="https://www.yorku.ca/cvr/summer-school/" aria-label="CVR Summer School home"><span class="brand-mark">CVR</span><span>Summer School 2026</span></a>
+      <a class="brand" href="index.html" aria-label="CVR Summer School home"><span class="brand-mark">CVR</span><span>Summer School 2026</span></a>
       <nav class="navlinks" aria-label="Main navigation">
         <a href="#start">Start</a>
         <a href="#psychophysics">Experiments</a>
         <a href="#anns">ANNs</a>
         <a href="#notebooks">Colab notebooks</a>
-        <a href="#edit">Edit tasks</a>
+        <a href="#edit">Task playground</a>
         <a href="#resources">Resources</a>
       </nav>
     </div>
@@ -39,7 +39,7 @@
         <div class="stat"><span class="dot"></span><div><strong>Use Colab notebooks</strong><span>Open notebooks directly in the browser; no local Python installation is required.</span></div></div>
         <div class="stat"><span class="dot"></span><div><strong>Analyze example data</strong><span>Work with sample behavioral CSV files and model outputs.</span></div></div>
         <div class="stat"><span class="dot"></span><div><strong>Compare humans and models</strong><span>Connect psychophysics results to artificial neural network predictions.</span></div></div>
-        <div class="stat"><span class="dot"></span><div><strong>Edit and remix tasks</strong><span>Use the browser workspace to change task files, add images, and preview your version.</span></div></div>
+        <div class="stat"><span class="dot"></span><div><strong>Edit and remix tasks</strong><span>Use the temporary browser playground to change task files, add images, and preview your version.</span></div></div>
       </aside>
     </section>
 
@@ -103,12 +103,12 @@
     </section>
 
     <section id="edit">
-      <div class="section-head"><h2>Edit and remix the tasks</h2><p class="muted">When the tutorial asks you to change an experiment, use the browser workspace. GitHub Pages shows the shared site; the workspace lets you make your own editable copy.</p></div>
+      <div class="section-head"><h2>Edit and remix the tasks</h2><p class="muted">Use the temporary browser playground when the tutorial asks you to change an experiment. Your edits stay in your own browser and do not change the official tutorial site.</p></div>
       <div class="grid two">
-        <article class="card"><span class="tag green">Best option</span><h3>Open the coding workspace</h3><p>Use this when you want to edit an HTML task, add images to an image folder, change metadata, and preview the result in the browser.</p><div class="links"><a class="pill" data-codespaces>Open workspace <span>↗</span></a><a class="pill" href="student-workspace.html">Workspace guide <span>↗</span></a></div></article>
-        <article class="card"><span class="tag violet">Quick edit</span><h3>Open the web editor</h3><p>Use this for small edits to a file. For live task previews and adding multiple images, the full workspace is better.</p><div class="links"><a class="pill" data-github-dev="psychophysics/tasks/obj_2afc.html">Edit object task <span>↗</span></a><a class="pill" data-github-dev="psychophysics/tasks/ratings.html">Edit ratings task <span>↗</span></a></div></article>
+        <article class="card"><span class="tag green">Temporary sandbox</span><h3>Open the task playground</h3><p>Edit a task HTML file, upload temporary images, preview the modified task, and download your edited HTML if you want to keep it.</p><div class="links"><a class="pill" href="playground.html">Open playground <span>↗</span></a></div></article>
+        <article class="card"><span class="tag violet">No account needed</span><h3>Everything runs in the browser</h3><p>The playground is only for temporary testing during the tutorial. Refreshing or closing the page resets your edits unless you download them.</p><div class="links"><a class="pill" href="psychophysics/tutorial.html">Back to tutorial <span>↗</span></a></div></article>
       </div>
-      <div class="callout" style="margin-top:14px;"><strong>Recommended workshop flow:</strong> open the workspace, make your own copy if prompted, edit the files under <code>psychophysics/tasks/</code> and <code>images/</code>, then preview the changed task from the forwarded website link.</div>
+      <div class="callout" style="margin-top:14px;"><strong>Recommended workshop flow:</strong> open the playground, choose a task, edit the HTML, upload any temporary images, run the preview, then save your downloaded data or edited HTML before closing the page.</div>
     </section>
 
     <section id="resources">
@@ -119,7 +119,7 @@
         <div class="card"><span class="tag">Images</span><h3>Stimulus images</h3><p>Example images used by the tasks and notebooks.</p><div class="links"><a class="pill" href="images/ratings/im0.jpg">View example image</a></div></div>
         <div class="card"><span class="tag amber">Human data</span><h3>Example behavioral CSVs</h3><p>Sample data files for practicing extraction and analysis.</p><div class="links"><a class="pill" href="psychophysics/data/example_data_2afc.csv">Example 2AFC data</a><a class="pill" href="psychophysics/data/all_data_ratings.csv">Ratings data</a></div></div>
         <div class="card"><span class="tag amber">Model data</span><h3>Example ANN CSVs</h3><p>Model output files used in the human-vs-ANN comparison workflow.</p><div class="links"><a class="pill" href="anns/results/example_model_obj_2afc.csv">Example model data</a></div></div>
-        <div class="card"><span class="tag green">Workspace</span><h3>Edit task files</h3><p>Open the student workspace guide for changing HTML files, adding images, and previewing your edits.</p><div class="links"><a class="pill" href="student-workspace.html">Open guide</a></div></div>
+        <div class="card"><span class="tag green">Playground</span><h3>Edit task files</h3><p>Open the temporary task playground for changing HTML files, adding images, and previewing your edits.</p><div class="links"><a class="pill" href="playground.html">Open playground</a></div></div>
         <div class="card"><span class="tag">Help</span><h3>Stuck?</h3><p>Ask an instructor or teaching assistant. Include the page, task, or notebook name you were using and any error message you saw.</p></div>
       </div>
     </section>

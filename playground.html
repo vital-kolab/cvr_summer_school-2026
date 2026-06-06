@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Temporary browser playground for editing and previewing CVR Summer School psychophysics tasks.">
+  <title>Temporary Task Playground | CVR Summer School 2026</title>
+  <link rel="stylesheet" href="assets/cvr-pages.css">
+  <script defer src="assets/cvr-pages.js"></script>
+  <style>
+    .playground-layout{display:grid;grid-template-columns:minmax(360px,0.95fr) minmax(420px,1.05fr);gap:18px;align-items:start}
+    @media(max-width:1000px){.playground-layout{grid-template-columns:1fr}}
+    .editor-panel,.preview-panel{background:rgba(255,255,255,.92);border:1px solid rgba(15,23,42,.10);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
+    .panel-head{padding:18px 20px;border-bottom:1px solid rgba(15,23,42,.10);display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+    .panel-body{padding:18px 20px}
+    .control-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+    @media(max-width:680px){.control-row{grid-template-columns:1fr}}
+    label.small-label{display:block;font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
+    select,input[type="text"],textarea{width:100%;border:1px solid rgba(15,23,42,.15);border-radius:14px;background:white;padding:11px 12px;font:inherit;color:var(--ink);box-sizing:border-box}
+    textarea.code-editor{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;font-size:12.5px;line-height:1.45;min-height:620px;resize:vertical;white-space:pre;tab-size:2}
+    .button-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+    .preview-frame{width:100%;height:720px;border:0;background:white;display:block}
+    .dropzone{border:1.5px dashed rgba(20,184,166,.65);border-radius:18px;background:rgba(20,184,166,.06);padding:14px;margin-top:12px}
+    .dropzone input{margin-top:8px}
+    .image-map{margin-top:12px;display:grid;gap:10px;max-height:220px;overflow:auto;padding-right:4px}
+    .image-row{display:grid;grid-template-columns:70px 1fr auto;gap:10px;align-items:center;padding:8px;background:white;border:1px solid rgba(15,23,42,.08);border-radius:14px}
+    .image-row img{width:64px;height:48px;object-fit:contain;background:#f8fafc;border-radius:8px;border:1px solid rgba(15,23,42,.08)}
+    .image-row code{font-size:11px;word-break:break-all}
+    .mini{font-size:.85rem;color:var(--muted);line-height:1.5}
+    .notice{font-size:.9rem;border-radius:14px;padding:10px 12px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);margin-top:10px}
+    .success{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.25)}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar">
+      <a class="brand" href="index.html" aria-label="CVR Summer School home"><span class="brand-mark">CVR</span><span>Summer School 2026</span></a>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="index.html#start">Start</a>
+        <a href="index.html#psychophysics">Experiments</a>
+        <a href="index.html#notebooks">Colab notebooks</a>
+        <a href="playground.html">Task playground</a>
+      </nav>
+    </div>
+
+    <section class="hero" aria-labelledby="title">
+      <div class="hero-card">
+        <span class="eyebrow">Temporary browser sandbox</span>
+        <h1 id="title">Edit a task, swap images, and test your own version.</h1>
+        <p class="subtitle">This playground runs entirely in your browser. Your changes are temporary: they affect only this page on your computer and do not change the official tutorial site.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#editor">Start editing</a>
+          <a class="button" href="psychophysics/tutorial.html">Back to psychophysics tutorial</a>
+        </div>
+      </div>
+      <aside class="status-card">
+        <h2 style="font-size:1.35rem;margin-bottom:8px;">How to use it</h2>
+        <div class="stat"><span class="dot"></span><div><strong>Choose a task</strong><span>Load one of the four browser experiments.</span></div></div>
+        <div class="stat"><span class="dot"></span><div><strong>Edit the HTML</strong><span>Change trial lists, labels, timing, or task text.</span></div></div>
+        <div class="stat"><span class="dot"></span><div><strong>Add images temporarily</strong><span>Upload images and assign paths used by the task.</span></div></div>
+        <div class="stat"><span class="dot"></span><div><strong>Run preview</strong><span>Test the modified version immediately.</span></div></div>
+      </aside>
+    </section>
+
+    <section id="editor">
+      <div class="section-head"><h2>Temporary task playground</h2><p class="muted">Use this when the tutorial asks you to modify a task. Nothing is saved to the official site.</p></div>
+      <div class="playground-layout">
+        <div class="editor-panel">
+          <div class="panel-head">
+            <div><h3 style="margin:0;">1. Edit the task file</h3><p class="mini" style="margin:.25rem 0 0;">Load a task, edit its HTML, then run it in the preview.</p></div>
+            <a class="pill" id="openOriginal" href="psychophysics/tasks/obj_2afc.html" target="_blank" rel="noopener">Open original ↗</a>
+          </div>
+          <div class="panel-body">
+            <div class="control-row">
+              <div>
+                <label class="small-label" for="taskSelect">Task</label>
+                <select id="taskSelect">
+                  <option value="psychophysics/tasks/obj_2afc.html">Object 2AFC</option>
+                  <option value="psychophysics/tasks/draw_2afc.html">Drawing 2AFC</option>
+                  <option value="psychophysics/tasks/ratings.html">Image ratings</option>
+                  <option value="psychophysics/tasks/n_back.html">N-back memory</option>
+                </select>
+              </div>
+              <div>
+                <label class="small-label" for="quickPatch">Quick changes</label>
+                <select id="quickPatch">
+                  <option value="">Choose an optional helper</option>
+                  <option value="slowStim">Make image presentation slower</option>
+                  <option value="shortTask">Keep only first 3 trials</option>
+                  <option value="grayBg">Change background to light gray</option>
+                  <option value="hideFullscreen">Skip fullscreen for preview</option>
+                </select>
+              </div>
+            </div>
+            <textarea id="codeEditor" class="code-editor" spellcheck="false" aria-label="Editable task HTML"></textarea>
+            <div class="button-row">
+              <button class="button primary" id="runPreview" type="button">Run preview</button>
+              <button class="button" id="reloadTask" type="button">Reload original</button>
+              <button class="button" id="downloadHtml" type="button">Download edited HTML</button>
+            </div>
+            <div class="notice" id="statusBox">Loading the selected task…</div>
+          </div>
+        </div>
+
+        <div class="preview-panel">
+          <div class="panel-head">
+            <div><h3 style="margin:0;">2. Preview your version</h3><p class="mini" style="margin:.25rem 0 0;">The task below uses your edited HTML and any temporary images you upload.</p></div>
+            <button class="button small" id="clearPreview" type="button">Clear preview</button>
+          </div>
+          <iframe id="previewFrame" class="preview-frame" title="Task preview" sandbox="allow-scripts allow-forms allow-modals allow-downloads allow-same-origin" allow="fullscreen; clipboard-read; clipboard-write"></iframe>
+          <div class="panel-body">
+            <h3 style="margin-top:0;">3. Add temporary images</h3>
+            <p class="mini">Upload images here when you want the edited task to use images that are not already in the tutorial folders. These images exist only in this browser tab.</p>
+            <div class="dropzone">
+              <label class="small-label" for="imageFolder">Virtual image folder</label>
+              <select id="imageFolder">
+                <option value="../../images/obj_2AFC/">Object 2AFC folder</option>
+                <option value="../../images/draw_2AFC/">Drawing 2AFC folder</option>
+                <option value="../../images/ratings/">Ratings folder</option>
+                <option value="../../images/n_back/">N-back folder</option>
+                <option value="../../images/labels/">Label image folder</option>
+              </select>
+              <input id="imageUpload" type="file" accept="image/*" multiple>
+              <p class="mini">Example: upload <code>im999.png</code> into the Object 2AFC folder, then use <code>999</code> in the task's image list.</p>
+            </div>
+            <div class="image-map" id="imageMap"></div>
+            <div class="notice success"><strong>Remember:</strong> temporary uploads and edits are not saved after you close or refresh this page. Download your edited HTML if you want to keep it.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>Common edits students can try</h2><p class="muted">These edits are meant for exploration during the tutorial.</p></div>
+      <div class="grid four">
+        <article class="card"><span class="tag green">Trials</span><h3>Change the stimulus list</h3><p>Edit arrays such as <code>val</code>, <code>ch1</code>, <code>ch2</code>, or <code>correct_choice</code>. Keep related lists the same length.</p></article>
+        <article class="card"><span class="tag violet">Timing</span><h3>Change presentation time</h3><p>Find values like <code>trial_duration: 100</code> and try a longer or shorter duration.</p></article>
+        <article class="card"><span class="tag amber">Images</span><h3>Swap stimuli</h3><p>Upload a new image named like <code>im999.png</code>, then include <code>999</code> in the relevant image list.</p></article>
+        <article class="card"><span class="tag">Instructions</span><h3>Change task wording</h3><p>Edit the welcome or instruction text and test how it changes the participant experience.</p></article>
+      </div>
+    </section>
+
+    <footer class="footer">Centre for Vision Research · Summer School 2026 · Temporary task playground</footer>
+  </main>
+
+<script>
+(function(){
+  const taskSelect = document.getElementById('taskSelect');
+  const quickPatch = document.getElementById('quickPatch');
+  const codeEditor = document.getElementById('codeEditor');
+  const runPreview = document.getElementById('runPreview');
+  const reloadTask = document.getElementById('reloadTask');
+  const downloadHtml = document.getElementById('downloadHtml');
+  const clearPreview = document.getElementById('clearPreview');
+  const previewFrame = document.getElementById('previewFrame');
+  const statusBox = document.getElementById('statusBox');
+  const openOriginal = document.getElementById('openOriginal');
+  const imageUpload = document.getElementById('imageUpload');
+  const imageFolder = document.getElementById('imageFolder');
+  const imageMap = document.getElementById('imageMap');
+
+  const virtualImages = new Map();
+  const taskBase = () => new URL(taskSelect.value.replace(/[^/]+$/, ''), window.location.href).href;
+
+  function setStatus(message, kind=''){
+    statusBox.textContent = message;
+    statusBox.className = 'notice' + (kind ? ' ' + kind : '');
+  }
+
+  async function loadTask(){
+    const path = taskSelect.value;
+    openOriginal.href = path;
+    previewFrame.removeAttribute('srcdoc');
+    setStatus('Loading ' + path + '…');
+    try{
+      const response = await fetch(path, {cache:'no-store'});
+      if(!response.ok) throw new Error('Could not load file: ' + response.status);
+      const text = await response.text();
+      codeEditor.value = text;
+      setStatus('Loaded the selected task. Edit the HTML, then click Run preview.', 'success');
+    }catch(err){
+      setStatus('Problem loading the task: ' + err.message);
+    }
+  }
+
+  function normalizeVirtualPath(folder, name){
+    return folder + name.replace(/^.*[\\/]/, '');
+  }
+
+  function renderImageMap(){
+    imageMap.innerHTML = '';
+    if(virtualImages.size === 0){
+      imageMap.innerHTML = '<p class="mini">No temporary images uploaded yet.</p>';
+      return;
+    }
+    for(const [path, info] of virtualImages.entries()){
+      const row = document.createElement('div');
+      row.className = 'image-row';
+      row.innerHTML = '<img alt="temporary image preview"><div><code></code><p class="mini" style="margin:.2rem 0 0;">Use this path in the HTML.</p></div><button class="button small" type="button">Remove</button>';
+      row.querySelector('img').src = info.url;
+      row.querySelector('code').textContent = path;
+      row.querySelector('button').addEventListener('click', () => {
+        URL.revokeObjectURL(info.url);
+        virtualImages.delete(path);
+        renderImageMap();
+      });
+      imageMap.appendChild(row);
+    }
+  }
+
+  function injectBase(html){
+    const baseTag = '<base href="' + taskBase() + '">';
+    if(/<base\s/i.test(html)) return html;
+    if(/<head[^>]*>/i.test(html)) return html.replace(/<head[^>]*>/i, match => match + '\n    ' + baseTag);
+    return baseTag + html;
+  }
+
+  function applyVirtualImages(html){
+    let patched = html;
+    for(const [path, info] of virtualImages.entries()){
+      const escaped = path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      patched = patched.replace(new RegExp(escaped, 'g'), info.url);
+      const withoutPrefix = path.replace(/^\.\.\/\.\.\//, '');
+      const escaped2 = withoutPrefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      patched = patched.replace(new RegExp(escaped2, 'g'), info.url);
+    }
+    return patched;
+  }
+
+  function patchForPreview(html){
+    let patched = injectBase(html);
+    patched = applyVirtualImages(patched);
+    patched = patched.replace(/<body([^>]*)>/i, '<body$1>\n<div style="position:fixed;top:10px;right:10px;z-index:999999;background:#0f172a;color:white;padding:6px 10px;border-radius:999px;font:12px system-ui,sans-serif;opacity:.86">Temporary preview</div>');
+    return patched;
+  }
+
+  function run(){
+    const html = patchForPreview(codeEditor.value);
+    previewFrame.srcdoc = html;
+    setStatus('Preview refreshed. Run the task inside the preview panel.', 'success');
+  }
+
+  function downloadEdited(){
+    const blob = new Blob([codeEditor.value], {type:'text/html'});
+    const a = document.createElement('a');
+    const taskName = taskSelect.value.split('/').pop().replace('.html','');
+    a.href = URL.createObjectURL(blob);
+    a.download = taskName + '_edited.html';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  function applyQuickPatch(kind){
+    if(!kind) return;
+    let text = codeEditor.value;
+    if(kind === 'slowStim'){
+      text = text.replace(/trial_duration:\s*100\b/g, 'trial_duration: 500');
+      setStatus('Changed 100 ms trial durations to 500 ms where found.', 'success');
+    }
+    if(kind === 'shortTask'){
+      text = text.replace(/let\s+val\s*=\s*\[([^\]]+)\];/m, (m, vals) => 'let val =[' + vals.split(',').slice(0,3).join(',') + '];');
+      text = text.replace(/let\s+ch1\s*=\s*\[([^\]]+)\];/m, (m, vals) => 'let ch1 =[' + vals.split(',').slice(0,3).join(',') + '];');
+      text = text.replace(/let\s+ch2\s*=\s*\[([^\]]+)\];/m, (m, vals) => 'let ch2 =[' + vals.split(',').slice(0,3).join(',') + '];');
+      text = text.replace(/let\s+correct_choice\s*=\s*\[([^\]]+)\];/m, (m, vals) => 'let correct_choice =[' + vals.split(',').slice(0,3).join(',') + '];');
+      text = text.replace(/let\s+stimuli\s*=\s*\[([^\]]+)\];/m, (m, vals) => 'let stimuli =[' + vals.split(',').slice(0,3).join(',') + '];');
+      setStatus('Tried to shorten editable trial arrays to the first 3 entries.', 'success');
+    }
+    if(kind === 'grayBg'){
+      text = text.replace(/background-color\s*:\s*grey/gi, 'background-color:#f1f5f9');
+      text = text.replace(/background-color\s*:\s*gray/gi, 'background-color:#f1f5f9');
+      setStatus('Changed the page background to a lighter gray where found.', 'success');
+    }
+    if(kind === 'hideFullscreen'){
+      text = text.replace(/timeline\.push\(fullscreen\);/g, '// timeline.push(fullscreen); // skipped for playground preview');
+      setStatus('Skipped fullscreen for easier preview testing.', 'success');
+    }
+    codeEditor.value = text;
+    quickPatch.value = '';
+  }
+
+  imageUpload.addEventListener('change', () => {
+    const files = Array.from(imageUpload.files || []);
+    for(const file of files){
+      const path = normalizeVirtualPath(imageFolder.value, file.name);
+      if(virtualImages.has(path)) URL.revokeObjectURL(virtualImages.get(path).url);
+      virtualImages.set(path, {file, url:URL.createObjectURL(file)});
+    }
+    imageUpload.value = '';
+    renderImageMap();
+    setStatus('Temporary image upload added. Use the shown virtual path in your edited HTML, then run preview.', 'success');
+  });
+
+  taskSelect.addEventListener('change', loadTask);
+  quickPatch.addEventListener('change', e => applyQuickPatch(e.target.value));
+  runPreview.addEventListener('click', run);
+  reloadTask.addEventListener('click', loadTask);
+  downloadHtml.addEventListener('click', downloadEdited);
+  clearPreview.addEventListener('click', () => previewFrame.removeAttribute('srcdoc'));
+
+  renderImageMap();
+  loadTask();
+})();
+</script>
+</body>
+</html>
