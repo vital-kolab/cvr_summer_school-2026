@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Student guide to the tools used in the CVR Summer School tutorial: GitHub Pages, browser experiments, jsPsych, Jupyter notebooks, Google Colab, images, CSV files, Python, and ANN models.">
+  <title>CVR Summer School 2026 | Tools Guide</title>
+  <link rel="stylesheet" href="assets/cvr-pages.css">
+  <script defer src="assets/cvr-pages.js"></script>
+  <style>
+    .mini-nav { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+    .mini-nav a { text-decoration:none; border:1px solid rgba(15,23,42,.12); border-radius:999px; padding:9px 13px; background:#fff; color:#334155; font-weight:700; font-size:.92rem; }
+    .tool-row { display:grid; grid-template-columns: minmax(180px, .8fr) minmax(260px, 1.3fr) minmax(260px, 1.2fr); gap:14px; align-items:start; padding:18px 0; border-top:1px solid rgba(15,23,42,.10); }
+    .tool-row:first-child { border-top:0; }
+    .tool-name { font-weight:900; color:#0f172a; font-size:1.05rem; }
+    .tool-name span { display:block; margin-top:5px; font-weight:700; color:#64748b; font-size:.85rem; }
+    .student-do { margin:0; padding-left:20px; color:#475569; }
+    .student-do li { margin-bottom:7px; }
+    .qa details { background:#fff; border:1px solid rgba(15,23,42,.10); border-radius:18px; padding:16px 18px; margin-bottom:12px; box-shadow:0 10px 28px rgba(15,23,42,.06); }
+    .qa summary { cursor:pointer; font-weight:900; color:#0f172a; }
+    .qa p { color:#475569; margin:10px 0 0; }
+    .checklist li { margin-bottom:9px; }
+    .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; background:#f1f5f9; border:1px solid #cbd5e1; border-bottom-width:2px; padding:1px 6px; border-radius:7px; font-size:.9em; }
+    @media (max-width: 860px) { .tool-row { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar">
+      <a class="brand" href="index.html" aria-label="CVR Summer School home"><span class="brand-mark">CVR</span><span>Summer School 2026</span></a>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="psychophysics/tutorial.html">Psychophysics</a>
+        <a href="anns/tutorial.html">ANNs</a>
+        <a href="playground.html">Playground</a>
+      </nav>
+    </div>
+
+    <section class="hero" aria-labelledby="title">
+      <div class="hero-card">
+        <span class="eyebrow">Before you start</span>
+        <h1 id="title">The tools you will use in this tutorial</h1>
+        <p class="subtitle">This page explains the main pieces of the tutorial site: browser experiments, task HTML files, image folders, CSV data, Jupyter notebooks, Google Colab, Python analysis, and artificial neural network models.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#map">See the tool map</a>
+          <a class="button" href="#qa">Read common questions</a>
+          <a class="button" href="index.html">Back to tutorial hub</a>
+        </div>
+        <div class="mini-nav" aria-label="Page sections">
+          <a href="#big-picture">Big picture</a>
+          <a href="#map">Tool map</a>
+          <a href="#workflow">Workflow</a>
+          <a href="#colab">Colab</a>
+          <a href="#playground">Playground</a>
+          <a href="#qa">Q&amp;A</a>
+        </div>
+      </div>
+      <aside class="status-card" aria-label="What students should know">
+        <h2 style="font-size:1.35rem;margin-bottom:8px;">Key idea</h2>
+        <div class="stat"><span class="dot"></span><div><strong>The website is the starting point</strong><span>Use it to navigate tasks, notebooks, images, and data.</span></div></div>
+        <div class="stat"><span class="dot"></span><div><strong>Experiments run in your browser</strong><span>Tasks are HTML pages powered by JavaScript and jsPsych.</span></div></div>
+        <div class="stat"><span class="dot"></span><div><strong>Analysis runs in Colab</strong><span>Notebooks open in Google Colab so you can run Python without installing anything.</span></div></div>
+        <div class="stat"><span class="dot"></span><div><strong>Edits are temporary unless saved</strong><span>Use the playground to test changes safely during the workshop.</span></div></div>
+      </aside>
+    </section>
+
+    <section id="big-picture">
+      <div class="section-head">
+        <h2>Big picture: what is this tutorial site?</h2>
+        <p class="muted">The tutorial combines online experiment demos with notebook-based analysis.</p>
+      </div>
+      <div class="grid two">
+        <article class="card">
+          <span class="tag green">Part 1</span>
+          <h3>Run behavioral experiments</h3>
+          <p>You will run short browser-based psychophysics tasks. These tasks show images, collect responses, and produce CSV files that store trial-by-trial data.</p>
+        </article>
+        <article class="card">
+          <span class="tag violet">Part 2</span>
+          <h3>Analyze data and test models</h3>
+          <p>You will open Jupyter notebooks in Google Colab to clean the behavioral data, run artificial neural network models, and compare human and model results.</p>
+        </article>
+      </div>
+      <div class="callout" style="margin-top:14px;"><strong>Nothing needs to be installed locally.</strong> The tasks run in a web browser, and the notebooks run in Google Colab.</div>
+    </section>
+
+    <section id="map">
+      <div class="section-head">
+        <h2>Tool map</h2>
+        <p class="muted">Each tool has a specific role. You do not need to master all of them before starting.</p>
+      </div>
+      <div class="card">
+        <div class="tool-row">
+          <div class="tool-name">GitHub Pages<span>The tutorial website</span></div>
+          <p>GitHub Pages is the web host for this tutorial. It lets you open the student hub, task pages, images, data links, and notebook launch buttons from one website.</p>
+          <ul class="student-do"><li>Use it as your main navigation page.</li><li>Click tutorial links, task links, and Colab links.</li><li>You do not need to edit the GitHub repository.</li></ul>
+        </div>
+        <div class="tool-row">
+          <div class="tool-name">HTML files<span>Web pages and experiment tasks</span></div>
+          <p>HTML files define what appears on a web page. In this tutorial, some HTML files are ordinary guide pages and others are experiment tasks.</p>
+          <ul class="student-do"><li>Open task HTML files to run experiments.</li><li>In the playground, edit task HTML temporarily.</li><li>Look for image paths, timing settings, labels, and trial lists.</li></ul>
+        </div>
+        <div class="tool-row">
+          <div class="tool-name">CSS<span>Visual styling</span></div>
+          <p>CSS controls how pages look: spacing, fonts, cards, colors, buttons, and layout.</p>
+          <ul class="student-do"><li>You usually do not need to edit CSS.</li><li>CSS is why the site looks like a polished tutorial rather than a plain folder of files.</li></ul>
+        </div>
+        <div class="tool-row">
+          <div class="tool-name">JavaScript<span>Interactivity</span></div>
+          <p>JavaScript makes the web pages interactive. It is used for task logic, button clicks, response collection, and launching notebooks.</p>
+          <ul class="student-do"><li>Task behavior depends on JavaScript.</li><li>Small changes can affect timing, trial order, or response handling.</li></ul>
+        </div>
+        <div class="tool-row">
+          <div class="tool-name">jsPsych<span>Browser experiments</span></div>
+          <p>jsPsych is a JavaScript library for building psychology and neuroscience experiments in the browser.</p>
+          <ul class="student-do"><li>Use jsPsych tasks to collect behavioral responses.</li><li>At the end of a task, save the downloaded CSV file.</li><li>Do not close the task before saving your data.</li></ul>
+        </div>
+        <div class="tool-row">
+          <div class="tool-name">Image folders<span>Stimuli</span></div>
+          <p>The experiments and notebooks load images from folders in the tutorial site. Image paths in the task files tell the browser which image to show.</p>
+          <ul class="student-do"><li>When editing tasks, make sure the image path matches the image location.</li><li>In the playground, uploaded images are temporary.</li><li>Common path mistakes cause missing-image icons.</li></ul>
+        </div>
+        <div class="tool-row">
+          <div class="tool-name">CSV files<span>Trial data and model outputs</span></div>
+          <p>CSV files are spreadsheet-like text files. The tasks produce CSV data, and some tutorial folders include example human or model CSV files.</p>
+          <ul class="student-do"><li>Download your task CSV at the end of each experiment.</li><li>Upload or load CSV files in Colab notebooks.</li><li>Check that each row corresponds to a trial or a stimulus.</li></ul>
+        </div>
+        <div class="tool-row">
+          <div class="tool-name">Jupyter notebooks<span>Interactive analysis documents</span></div>
+          <p>A Jupyter notebook mixes text, code, outputs, and figures in one document. Notebook files usually end with <code>.ipynb</code>.</p>
+          <ul class="student-do"><li>Read the text cells for instructions.</li><li>Run code cells one at a time from top to bottom.</li><li>Use notebooks for data cleaning, plotting, and model analysis.</li></ul>
+        </div>
+        <div class="tool-row">
+          <div class="tool-name">Google Colab<span>Jupyter notebooks in the cloud</span></div>
+          <p>Google Colab lets you run Jupyter notebooks in your browser using Google’s computers. You do not need to install Python locally.</p>
+          <ul class="student-do"><li>Click a Colab button from the tutorial site.</li><li>Sign into Google if asked.</li><li>Use <strong>File → Save a copy in Drive</strong> before editing heavily.</li></ul>
+        </div>
+        <div class="tool-row">
+          <div class="tool-name">Python<span>Analysis language</span></div>
+          <p>Python is the programming language used in the notebooks for loading images, processing CSV files, plotting results, and running models.</p>
+          <ul class="student-do"><li>You can run the provided code even if you are new to Python.</li><li>Read error messages carefully; they often point to missing files or wrong paths.</li></ul>
+        </div>
+        <div class="tool-row">
+          <div class="tool-name">Artificial neural networks<span>Model observers</span></div>
+          <p>ANNs are computational models that can process images. In this tutorial, they are used as model observers that can be tested on tasks similar to the human experiments.</p>
+          <ul class="student-do"><li>Run model notebooks to generate predictions or scores.</li><li>Compare model outputs with human behavioral data.</li></ul>
+        </div>
+        <div class="tool-row">
+          <div class="tool-name">Temporary playground<span>Safe task editing</span></div>
+          <p>The playground lets you edit a task file and test the result directly in the browser. It is designed for exploration during the tutorial.</p>
+          <ul class="student-do"><li>Use it to change task timing, labels, trial lists, or images.</li><li>Your changes do not affect the official site.</li><li>Download your edited HTML if you want to keep it.</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="workflow">
+      <div class="section-head">
+        <h2>Typical workflow during the tutorial</h2>
+        <p class="muted">This is the most common path from experiment to analysis.</p>
+      </div>
+      <div class="workflow">
+        <div class="step"><h3>1. Open the tutorial hub</h3><p>Start from the main page and choose the psychophysics or ANN tutorial.</p></div>
+        <div class="step"><h3>2. Run a browser task</h3><p>Complete a task such as object 2AFC, ratings, drawing 2AFC, or N-back.</p></div>
+        <div class="step"><h3>3. Save the CSV</h3><p>When the task ends, download the CSV file. This is your behavioral dataset.</p></div>
+        <div class="step"><h3>4. Open a Colab notebook</h3><p>Launch the matching notebook and run cells from top to bottom.</p></div>
+        <div class="step"><h3>5. Upload or load data</h3><p>Use your own downloaded CSV or the example files provided in the tutorial.</p></div>
+        <div class="step"><h3>6. Compare humans and models</h3><p>Use the ANN notebooks and comparison notebook to study similarities and differences.</p></div>
+      </div>
+    </section>
+
+    <section id="colab">
+      <div class="section-head">
+        <h2>What is a Jupyter notebook? What is Google Colab?</h2>
+        <p class="muted">These are the main analysis tools used in the tutorial.</p>
+      </div>
+      <div class="grid two">
+        <article class="card">
+          <span class="tag violet">Jupyter notebook</span>
+          <h3>A notebook is an interactive lab notebook</h3>
+          <p>It contains explanations, code, results, and figures in one file. Text cells explain what is happening. Code cells perform computations. Output cells show tables, plots, images, or printed results.</p>
+          <ul class="checklist">
+            <li>Notebook files end with <code>.ipynb</code>.</li>
+            <li>Run cells in order, from top to bottom.</li>
+            <li>If a cell depends on a previous cell, skipping cells can cause errors.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <span class="tag green">Google Colab</span>
+          <h3>Colab runs notebooks in the browser</h3>
+          <p>Colab is a free browser-based notebook environment. It lets you run Python code without installing Python, Jupyter, or machine learning packages on your own computer.</p>
+          <ul class="checklist">
+            <li>Click a Colab button from the tutorial site.</li>
+            <li>Sign in with a Google account if prompted.</li>
+            <li>Use <strong>Runtime → Run all</strong> only after reading the notebook instructions.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="callout" style="margin-top:14px;"><strong>Important:</strong> if you want to edit a notebook and keep your work, choose <strong>File → Save a copy in Drive</strong> inside Colab.</div>
+    </section>
+
+    <section id="playground">
+      <div class="section-head">
+        <h2>What is the temporary task playground?</h2>
+        <p class="muted">Use this when you want to change an experiment and immediately test the result.</p>
+      </div>
+      <div class="grid two">
+        <article class="card">
+          <span class="tag green">What it is for</span>
+          <h3>Safe browser-based editing</h3>
+          <p>The playground loads a task HTML file into a browser editor. You can change the task and preview your modified version without changing the official tutorial site.</p>
+          <div class="links"><a class="pill" href="playground.html">Open playground <span>↗</span></a></div>
+        </article>
+        <article class="card">
+          <span class="tag amber">What to remember</span>
+          <h3>Temporary means temporary</h3>
+          <p>Edits made in the playground live only in your browser. If you refresh or close the page, changes may be lost unless you download your edited HTML file.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="qa" class="qa">
+      <div class="section-head">
+        <h2>Common questions</h2>
+        <p class="muted">Start here when something does not work as expected.</p>
+      </div>
+      <details open>
+        <summary>Do I need to install Python or Jupyter?</summary>
+        <p>No. The notebooks open in Google Colab, which runs Python in the browser.</p>
+      </details>
+      <details>
+        <summary>Do I need a GitHub account?</summary>
+        <p>Not for simply using the tutorial site, running tasks, opening pages, or using the temporary playground. Some Colab features may require a Google account.</p>
+      </details>
+      <details>
+        <summary>What is the difference between the tutorial site and Colab?</summary>
+        <p>The tutorial site is where you navigate, read instructions, run browser tasks, and find files. Colab is where you run notebook-based Python analyses.</p>
+      </details>
+      <details>
+        <summary>What should I do when Colab asks for permission?</summary>
+        <p>Read the prompt carefully. Colab may ask for permission to save a copy to Google Drive or access files you upload. For this tutorial, you usually only need to upload or save your own tutorial files.</p>
+      </details>
+      <details>
+        <summary>Why did my notebook lose its variables?</summary>
+        <p>The Colab runtime may disconnect or reset. Run the notebook cells again from the top to recreate the variables.</p>
+      </details>
+      <details>
+        <summary>Why is my image not showing in a task?</summary>
+        <p>The most common reason is a wrong image path. Check the folder name, file name, spelling, capitalization, and extension such as <code>.jpg</code> or <code>.png</code>.</p>
+      </details>
+      <details>
+        <summary>Where does my task data go?</summary>
+        <p>At the end of a browser experiment, the task should download a CSV file. Save that file somewhere you can find it again, because you may need to upload it to Colab later.</p>
+      </details>
+      <details>
+        <summary>Can I change the official tutorial site?</summary>
+        <p>No. The official site is shared and read-only for students. Use the temporary playground to test your own changes safely.</p>
+      </details>
+      <details>
+        <summary>Can I keep my edited task?</summary>
+        <p>Yes. Use the playground’s download option to save your edited HTML file. Otherwise, your browser edits are temporary.</p>
+      </details>
+      <details>
+        <summary>What should I do if a task freezes or looks wrong?</summary>
+        <p>Refresh the page and try again. If you edited the task, return to the original version and then reapply changes gradually. Ask an instructor or TA if the problem continues.</p>
+      </details>
+      <details>
+        <summary>What should I report when asking for help?</summary>
+        <p>Tell the instructor or TA which page, task, or notebook you were using; what you clicked; what you expected; and what happened instead. Screenshots and error messages are very helpful.</p>
+      </details>
+    </section>
+
+    <section id="quick-check">
+      <div class="section-head">
+        <h2>Quick checklist before starting</h2>
+        <p class="muted">Use this to make sure you are ready for the hands-on parts.</p>
+      </div>
+      <div class="card">
+        <ul class="checklist">
+          <li>I can open the tutorial hub in a modern browser such as Chrome, Edge, Firefox, or Safari.</li>
+          <li>I can open a psychophysics task and see images on the screen.</li>
+          <li>I know that task output is saved as a CSV file.</li>
+          <li>I can open a notebook in Google Colab.</li>
+          <li>I know to run notebook cells from top to bottom.</li>
+          <li>I know that playground edits are temporary unless I download the edited HTML.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="footer">Centre for Vision Research · Summer School 2026 · Student tutorial site</footer>
+  </main>
+</body>
+</html>
