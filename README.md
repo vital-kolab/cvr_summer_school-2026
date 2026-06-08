@@ -119,3 +119,16 @@ Teaching assistants:
 
 - Sabine Muzellec (lead)
 - Xue Teng
+
+## License
+
+Copyright © 2026 ViTA Lab, Centre for Vision Research, York University.
+
+Educational/tutorial content is licensed under CC BY-NC 4.0.  
+Code, HTML, JavaScript, CSS, and notebooks are licensed under the MIT License.
+
+Please cite or acknowledge:
+
+**CVR Summer School 2026 Tutorial Materials, ViTA Lab, Centre for Vision Research, York University.**
+
+See `LICENSE.md` for details.
