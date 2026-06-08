@@ -1,21 +1,43 @@
-MIT License
+# License
 
-Copyright (c) 2026 vital-kolab
+Copyright © 2026 ViTA Lab, Centre for Vision Research, York University.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This repository contains educational tutorial materials, browser-based experiment files,
+analysis notebooks, example code, and supporting resources for the CVR Summer School 2026.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+## Educational content
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Unless otherwise noted, the educational and instructional content in this repository is licensed under:
+
+**Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**
+
+You may share and adapt these materials for non-commercial teaching, training, and research purposes,
+provided that appropriate credit is given to:
+
+**ViTA Lab, Centre for Vision Research, York University**
+
+Suggested attribution:
+
+> CVR Summer School 2026 Tutorial Materials, ViTA Lab, Centre for Vision Research, York University.
+
+License: https://creativecommons.org/licenses/by-nc/4.0/
+
+## Code and notebooks
+
+Unless otherwise noted, the code, HTML, JavaScript, CSS, and Jupyter/Colab notebooks in this repository are licensed under the:
+
+**MIT License**
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of the software and associated documentation files in this repository, to deal in the software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, and sublicense copies of the software, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS, COPYRIGHT HOLDERS, OR AFFILIATED INSTITUTIONS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+## Third-party materials
+
+Some materials may rely on third-party libraries, datasets, models, images, or services.
+Those materials remain subject to their original licenses and terms of use.
+
+Users are responsible for ensuring that any additional images, datasets, or model outputs they add
+to this tutorial comply with the relevant licenses and permissions.
