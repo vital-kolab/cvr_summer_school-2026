@@ -29,3 +29,40 @@
   background: #000;
   box-shadow: 0 12px 30px rgba(19,34,56,.10);
 }
+
+.brand-with-logos {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  object-fit: contain;
+  display: inline-block;
+  background: transparent;
+}
+
+.cvr-logo {
+  width: 42px;
+  height: 42px;
+}
+
+.vista-logo {
+  width: 118px;
+  height: auto;
+  max-height: 46px;
+}
+
+.brand-with-logos span {
+  margin-left: 2px;
+}
+@media (max-width: 760px) {
+  .vista-logo {
+    width: 92px;
+    max-height: 38px;
+  }
+
+  .brand-with-logos span {
+    font-size: 0.95rem;
+  }
+}
