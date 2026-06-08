@@ -109,13 +109,13 @@ Centre for Vision Research, York University
 
 Organizing committee:
 
-- Kohitij Kar
-- Robert Alison
+- Kohitij Kar (Chair)
+- Robert Alison (CVR Director)
 - Eline Kupers
 - Richard Murray
-- Irit Printz
+- Irit Printz (CVR Coordinator)
 
 Teaching assistants:
 
-- Sabine Muzellec
+- Sabine Muzellec (lead)
 - Xue Teng
