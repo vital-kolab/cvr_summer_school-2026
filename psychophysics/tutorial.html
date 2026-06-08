@@ -368,7 +368,7 @@ ul {
 <body>
 <header>
     <h1>Psychophysics tasks tutorial</h1>
-    <p>Goal: understand the screens, then learn what to change to test your own images.</p>
+    <p>Goal: understand the trial sequence in the experiment, then learn what to change to test your own images.</p>
 </header>
 
 <div class="container">
@@ -402,14 +402,14 @@ ul {
 <div class="response-card object-card">
 <h3>2AFC</h3>
 <p><b>2AFC</b> means <b>two-alternative forced choice</b>.</p>
-<p>The participant sees one image and chooses between two answers.</p>
-<p>Use this for object recognition or drawing recognition.</p>
+<p>The participant sees one image and must choose which one of two stimulus alternatives they saw.</p>
+<p>Use this for object recognition or drawing recognition tasks.</p>
 <div class="measure-pill">Files: <code>obj_recog.html</code>, <code>draw_recog.html</code></div>
 </div>
 <div class="response-card rating-card">
 <h3>Rating</h3>
-<p>The participant sees one image and moves a slider.</p>
-<p>Use this when there is no correct answer, only a score.</p>
+<p>The participant sees one image and moves a slider  to indicate their response.</p>
+<p>Use this when there is no objectively correct answer.</p>
 <div class="measure-pill">File: <code>social_ratings.html</code></div>
 </div>
 <div class="response-card memory-card">
@@ -447,7 +447,7 @@ ul {
     <div class="component">
         <div class="icon">🖼️</div>
         <h3>2. Image screen</h3>
-        <p>The image is shown. In many tasks, it is shown briefly so the participant cannot look at it for too long.</p>
+        <p>The image is shown. In many tasks, it is shown briefly so the participant cannot look at it for too long  nor have time to make an eye movement and look away from the image.</p>
         <span class="cvr-tag">Common time: 100–200 ms</span>
     </div>
     <div class="component">
@@ -921,6 +921,13 @@ Then paste the generated lines into the HTML file under:
 <li><code>stimulus</code>: the image that was shown.</li>
 </ul>
 <p>The task can also save extra information, such as whether the answer was correct.</p>
+</div>
+
+<div class="card">
+<h2>Important: complete the task before closing the window</h2>
+<p>The CSV file is saved only at the end of the task, after the final thank-you screen appears.</p>
+<p><strong>If you close the browser window, refresh the page, or stop the task before the final screen, the CSV data file will not be saved.</strong></p>
+<p>Please continue until you see the message saying that the task is complete and the CSV file has been saved.</p>
 </div>
 
 <div class="card">
