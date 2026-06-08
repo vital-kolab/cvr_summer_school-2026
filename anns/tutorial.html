@@ -221,7 +221,7 @@
   <main>
     <section class="cvr-launchpad" data-cvr-launchpad="true">
       <div class="cvr-launch-head">
-        <div><span class="cvr-tag">CVR Summer School 2026</span><h2>ANN notebooks</h2><p class="cvr-muted">Use these launch buttons to open the original notebooks in Google Colab. The tutorial content below is unchanged.</p></div>
+        <div><span class="cvr-tag">CVR Summer School 2026</span><h2>ANN notebooks</h2><p class="cvr-muted">Use these launch buttons to open the original notebooks in Google Colab. The tutorial content below is the original version. For each demo, make a copy of these original files to your Drive.</p></div>
         <a class="cvr-button" href="../index.html">← Back to tutorial hub</a>
       </div>
       <div class="cvr-launch-grid">
@@ -254,7 +254,7 @@
       <h2>1. Goal of this tutorial</h2>
 
       <p>
-        This tutorial explains the simplified model notebooks.
+        This tutorial explains how to make the models perform the same task as humans.
         The main idea is very simple:
       </p>
 
@@ -267,19 +267,18 @@
       </div>
 
       <p>
-        In the human experiments, participants saw images and gave responses.
-        In the model notebooks, the model sees the same kind of images and gives a prediction.
+        In the psychophysics experiments, a human participant saw images and gave responses. 
+        In the ANN notebooks, a model will see the same images and perform the same task as the human participants, producing the similar kind of responses. We call this the "model output".
       </p>
 
       <div class="callout">
-        <strong>Big idea:</strong> we treat the model like another subject.
-        A useful model should show similar behavior to human subjects:
-        similar easy images, similar hard images, and similar mistakes.
+        <strong>Big idea:</strong> we treat the model like any other human subject.
+        If the model captures relevant functions used by the human brain, it is probably a good approximation of the behavioural measurement, and in turn produces similar answers to the humans (for example, finding some images easier than others to judge and making mistakes for similar images). This allows us to gain insights into the underlying computations used by the human visual system.
       </div>
     </section>
 
     <section id="big-picture">
-      <h2>2. What does “model as a subject” mean?</h2>
+      <h2>2. What does it mean to "treat a model as a human subject"?</h2>
 
       <p>
         A human subject sees an image and produces a response.
@@ -322,9 +321,8 @@
       <h2>3. Demo notebooks</h2>
 
       <p>
-        Before using the task-matched notebooks, there are demo notebooks.
-        These notebooks are simpler. They show how to load a pretrained model,
-        give it one image, and read the model prediction.
+        Before running model experiments with "task-matched" notebooks, we will learn what happens in these experiments using demo notebooks. 
+        These demo notebooks are simpler than the task-matched notebooks, and they show how to load a pretrained model, how give it one image, and how read the model prediction.
       </p>
 
       <div class="callout">
@@ -332,6 +330,19 @@
         the demo notebooks test models on the kind of task they were originally trained for.
         The task-matched notebooks test models in the same format as the human experiments.
       </div>
+
+      <h3>Why do we include demo notebooks?</h3>
+
+      <p>
+        The demo notebooks are useful because they introduce the basic model workflow:
+      </p>
+
+      <ul>
+        <li>load a pretrained model,</li>
+        <li>prepare an image so the model can read it,</li>
+        <li>run the image through the model,</li>
+        <li>look at the model prediction.</li>
+      </ul>
 
       <table>
         <thead>
@@ -375,9 +386,8 @@
       <h3>AlexNet demo</h3>
 
       <p>
-        In the AlexNet demo, the model is used in its standard way.
-        The notebook loads a pretrained image-classification model,
-        prepares one image, runs the image through the model, and prints the top predictions.
+        In the AlexNet demo, the notebook loads a pretrained image-classification model,
+        prepares one image, runs the image through the model, and produces the 5 most likely object categories.
       </p>
 
       <div class="flow">
@@ -409,14 +419,14 @@ _, indices = torch.topk(output, 5)</code></pre>
       <h3>Facial emotion demo</h3>
 
       <p>
-        In the facial emotion demo, a pretrained face-expression model is used in its standard way.
-        The notebook gives the model one face image and gets predicted emotion labels.
+        In the facial emotion demo, a pretrained face-expression model is used.
+        The notebook gives the model one face image and produces the most likely emotion label.
       </p>
 
       <div class="flow">
         <span class="step">One face image</span>
         <span class="arrow">→</span>
-        <span class="step">Emotion model</span>
+        <span class="step">Facial emotion model</span>
         <span class="arrow">→</span>
         <span class="step">Emotion labels + scores</span>
       </div>
@@ -432,19 +442,6 @@ results = clf(img)</code></pre>
         In simple terms, this asks:
         <strong>What emotion does the pretrained model think this face shows?</strong>
       </p>
-
-      <h3>Why do we include demo notebooks?</h3>
-
-      <p>
-        The demo notebooks are useful because they introduce the basic model workflow:
-      </p>
-
-      <ul>
-        <li>load a pretrained model,</li>
-        <li>prepare an image so the model can read it,</li>
-        <li>run the image through the model,</li>
-        <li>look at the model prediction.</li>
-      </ul>
 
       <p>
         After understanding this basic idea, the task-matched notebooks extend the same logic
@@ -676,13 +673,17 @@ labels = [0, 1, 4, 5]</code></pre>
 
       <p>
         The labels tell the code which object category is correct for each image.
+        The labels used in these tasks are defined in the metadata README:
+      <a href="https://vital-kolab.github.io/cvr_summer_school-2026/psychophysics/examples_metadata_files/README_metadata_tests.md" target="_blank">
+        README_metadata_tests.md
+      </a>.
       </p>
 
       <h3>Step 2: Get model probabilities</h3>
 
       <p>
         The model is run on every image.
-        Its output is in the form of probabilities per class.
+        Its output is in the form of probabilities per object category class.
       </p>
 
       <pre><code class="language-python">probabilities = []
@@ -724,17 +725,18 @@ probabilities = np.concatenate(probabilities, axis=0)</code></pre>
       </p>
 
       <p>
-        For each possible pair, the code computes:
+        For each image, the model checks how likely it would have chosen the correct category label compared to picking one of the wrong category labels:
       </p>
 
       <pre><code class="language-python">score =
-    probability_correct_answer /
-    (probability_correct_answer + probability_wrong_answer)</code></pre>
+    probability_correct_category /
+    (probability_correct_category + probability_wrong_category)</code></pre>
 
       <p>
         This gives a model 2AFC score.
         If the model gives more probability to the correct answer than to the wrong answer,
         the score is high. If it gives more probability to the wrong answer, the score is low.
+        The score is computed across all possible distractors and averaged to produce a single score per image (called image_scores below).
       </p>
 
       <pre><code class="language-python">image_scores, model_choices = create_image_level_accuracies(
@@ -802,7 +804,7 @@ image_path = f"../images/ratings/im{indices[img_idx]}.jpg"</code></pre>
       <h3>What model is used?</h3>
 
       <p>
-        The notebook uses a model made open-source through a GitHub repository to download at the beginning.
+        The notebook uses the ComboNet model, a model to judge facial aesthetics, which we will find and download from GitHub first.
         The model weights are loaded from:
       </p>
 
@@ -815,7 +817,7 @@ image_path = f"../images/ratings/im{indices[img_idx]}.jpg"</code></pre>
       <h3>What does the model output?</h3>
 
       <p>
-        For each face image, the model outputs one numerical rating score (between 1 and 5).
+        For each face image, the model outputs one numerical rating score (between 1 and 5, where 1 = lowest "aesthetics" score and 5 = highest "aesthetics" score).
       </p>
 
       <pre><code class="language-python">ratings = []
@@ -1309,6 +1311,12 @@ n_back_vitmem_contrast.csv</code></pre>
         does not capture about human behavior.
       </p>
 
+      <h3>Question 3:</h3> 
+      
+      <p></p>
+      When you manipulate the images, what do you expect will happen to task performance for humans and models? Will they perform the same or different? What can you conclude from this experiment if your hypothesis is confirmed?
+      </p>
+
     </section>
 
     <section id="summary">
@@ -1328,9 +1336,13 @@ n_back_vitmem_contrast.csv</code></pre>
       </ul>
 
       <div class="callout">
-        <strong>Main takeaway:</strong> the point is not only to test whether the model performs well.
+        <strong>Main takeaway 1:</strong> the point is not only to test whether the model performs well.
         The point is to test whether the model behaves like a human subject on the same task,
         and to find where that model-human similarity breaks down.
+      </div>
+
+      <div class="callout">
+        <strong>Main takeaway 2:</strong> By using models that "act" similar to humans (i.e., they take the same inputs as humans and produce the same outputs), we can create falsifiable predictions for new images or tasks the model has not seen before.
       </div>
     </section>
 
