@@ -26,6 +26,7 @@
         <a href="#start">Start</a>
         <a href="#psychophysics">Experiments</a>
         <a href="#anns">ANNs</a>
+        <a href="project-reliability.html">Class project</a>
         <a href="tutorial-tools-guide.html">Tools guide</a>
         <a href="#drive-setup">Drive setup</a>
         <a href="#notebooks">Colab notebooks</a>
@@ -43,6 +44,7 @@
           <a class="button primary" href="psychophysics/tutorial.html">Start psychophysics tutorial</a>
           <a class="button primary" href="anns/tutorial.html">Start ANN tutorial</a>
           <a class="button colab" data-colab-path="anns/AlexNet_demo.ipynb">Open first Colab notebook</a>
+          <a class="button" href="project-reliability.html">Open class project</a>
         </div>
       </div>
       <aside class="status-card" aria-label="What you can do on this site">
@@ -52,6 +54,7 @@
         <div class="stat"><span class="dot"></span><div><strong>Analyze example data</strong><span>Work with sample behavioral CSV files and model outputs.</span></div></div>
         <div class="stat"><span class="dot"></span><div><strong>Compare humans and models</strong><span>Connect psychophysics results to artificial neural network predictions.</span></div></div>
         <div class="stat"><span class="dot"></span><div><strong>Edit and remix tasks</strong><span>Use the temporary browser playground to change task files, add images, and preview your version.</span></div></div>
+        <div class="stat"><span class="dot"></span><div><strong>Build a class project</strong><span>Use task performance to study reliability, noise, and human/model comparisons.</span></div></div>
       </aside>
     </section>
 
@@ -88,6 +91,15 @@
       </div>
     </section>
 
+
+    <section id="project">
+      <div class="section-head"><h2>Class project: performance, reliability, and noise</h2><p class="muted">Use the performance data collected from the tutorial tasks to ask how reliable behavioral measurements are, and why noise matters when comparing humans and models.</p></div>
+      <div class="grid two">
+        <article class="card"><span class="tag violet">Project</span><h3>Reliability from task data</h3><p>Students ran the four browser tasks. The resulting class-level CSV files can now be analyzed to estimate split-half reliability and decide which measurements are stable enough to interpret.</p><div class="links"><a class="pill" href="project-reliability.html">Open class project <span>↗</span></a><a class="pill colab" data-colab-path="projects/split_half_reliability_colab.ipynb">Open reliability notebook <span>↗</span></a></div></article>
+        <article class="card"><span class="tag green">Concept</span><h3>Noise correction tutorial</h3><p>A companion notebook shows how measurement noise can reduce observed correlations, how split-half reliability is estimated, and why collecting more repetitions improves reliability.</p><div class="links"><a class="pill colab" data-colab-path="projects/Noise_correction_tutorial.ipynb">Open noise notebook <span>↗</span></a></div></article>
+      </div>
+    </section>
+
     <section id="drive-setup">
       <div class="section-head"><h2>Before opening Colab: add the CVR folder to My Drive</h2><p class="muted">Do this once before starting the notebook exercises so Colab can find the shared tutorial files.</p></div>
       <div class="grid two">
@@ -119,20 +131,22 @@
         <table>
           <thead><tr><th>Topic</th><th>Notebook</th><th>Open</th><th>Use it for</th></tr></thead>
           <tbody>
-            <tr><td>Stimulus manipulation</td><td><code>manipulate_stimuli.ipynb</code></td><td><a class="button small colab" data-colab-path="manipulate_stimuli.ipynb">Colab</a></td><td>Create altered image versions such as blurred, noisy, brighter, or contrast-changed stimuli.</td></tr>
-            <tr><td>ANN basics</td><td><code>anns/AlexNet_demo.ipynb</code></td><td><a class="button small colab" data-colab-path="anns/AlexNet_demo.ipynb">Colab</a></td><td>Introductory model demonstration.</td></tr>
-            <tr><td>Facial emotion</td><td><code>anns/Facial_emotion.ipynb</code></td><td><a class="button small colab" data-colab-path="anns/Facial_emotion.ipynb">Colab</a></td><td>Model testing for facial emotion stimuli.</td></tr>
-            <tr><td>Object 2AFC model</td><td><code>anns/obj_2afc.ipynb</code></td><td><a class="button small colab" data-colab-path="anns/obj_2afc.ipynb">Colab</a></td><td>Generate model choices for the object 2AFC task.</td></tr>
-            <tr><td>Drawing 2AFC model</td><td><code>anns/draw_2afc.ipynb</code></td><td><a class="button small colab" data-colab-path="anns/draw_2afc.ipynb">Colab</a></td><td>Generate model choices for the drawing 2AFC task.</td></tr>
-            <tr><td>Ratings model</td><td><code>anns/ratings.ipynb</code></td><td><a class="button small colab" data-colab-path="anns/ratings.ipynb">Colab</a></td><td>Generate model scores for image ratings.</td></tr>
-            <tr><td>N-back model</td><td><code>anns/n_back.ipynb</code></td><td><a class="button small colab" data-colab-path="anns/n_back.ipynb">Colab</a></td><td>Generate model scores for the N-back/memorability task.</td></tr>
-            <tr><td>Extract 2AFC data</td><td><code>psychophysics/extract_2afc_results.ipynb</code></td><td><a class="button small colab" data-colab-path="psychophysics/extract_2afc_results.ipynb">Colab</a></td><td>Clean jsPsych 2AFC CSV files.</td></tr>
-            <tr><td>Extract rating data</td><td><code>psychophysics/extract_ratings.ipynb</code></td><td><a class="button small colab" data-colab-path="psychophysics/extract_ratings.ipynb">Colab</a></td><td>Clean jsPsych rating CSV files.</td></tr>
-            <tr><td>Extract N-back data</td><td><code>psychophysics/extract_n_back_results.ipynb</code></td><td><a class="button small colab" data-colab-path="psychophysics/extract_n_back_results.ipynb">Colab</a></td><td>Clean jsPsych N-back CSV files.</td></tr>
-            <tr><td>Make 2AFC task lines</td><td><code>psychophysics/make_2afc_html_lines.ipynb</code></td><td><a class="button small colab" data-colab-path="psychophysics/make_2afc_html_lines.ipynb">Colab</a></td><td>Turn metadata into editable task arrays.</td></tr>
-            <tr><td>Make rating task lines</td><td><code>psychophysics/make_ratings_html_lines.ipynb</code></td><td><a class="button small colab" data-colab-path="psychophysics/make_ratings_html_lines.ipynb">Colab</a></td><td>Turn rating metadata into editable task arrays.</td></tr>
-            <tr><td>Make N-back task lines</td><td><code>psychophysics/make_n_back_html_lines.ipynb</code></td><td><a class="button small colab" data-colab-path="psychophysics/make_n_back_html_lines.ipynb">Colab</a></td><td>Turn N-back metadata into editable task arrays.</td></tr>
-            <tr><td>Human vs ANN comparison</td><td><code>compare_humans_vs_anns.ipynb</code></td><td><a class="button small colab" data-colab-path="compare_humans_vs_anns.ipynb">Colab</a></td><td>Compare human behavioral results to model outputs.</td></tr>
+            <tr><td>Stimulus manipulation</td><td>Shared Colab notebook</td><td><a class="button small colab" data-colab-path="manipulate_stimuli.ipynb">Open in Colab</a></td><td>Create altered image versions such as blurred, noisy, brighter, or contrast-changed stimuli.</td></tr>
+            <tr><td>Noise correction and reliability</td><td>Shared Colab notebook</td><td><a class="button small colab" data-colab-path="projects/Noise_correction_tutorial.ipynb">Open in Colab</a></td><td>Learn how measurement noise lowers observed correlations and how reliability can be used to correct them.</td></tr>
+            <tr><td>Reliability from class tasks</td><td>Shared Colab notebook</td><td><a class="button small colab" data-colab-path="projects/split_half_reliability_colab.ipynb">Open in Colab</a></td><td>Analyze the class performance CSVs and estimate split-half reliability for the tutorial tasks.</td></tr>
+            <tr><td>ANN basics</td><td>Shared Colab notebook</td><td><a class="button small colab" data-colab-path="anns/AlexNet_demo.ipynb">Open in Colab</a></td><td>Introductory model demonstration.</td></tr>
+            <tr><td>Facial emotion</td><td>Shared Colab notebook</td><td><a class="button small colab" data-colab-path="anns/Facial_emotion.ipynb">Open in Colab</a></td><td>Model testing for facial emotion stimuli.</td></tr>
+            <tr><td>Object 2AFC model</td><td>Shared Colab notebook</td><td><a class="button small colab" data-colab-path="anns/obj_2afc.ipynb">Open in Colab</a></td><td>Generate model choices for the object 2AFC task.</td></tr>
+            <tr><td>Drawing 2AFC model</td><td>Shared Colab notebook</td><td><a class="button small colab" data-colab-path="anns/draw_2afc.ipynb">Open in Colab</a></td><td>Generate model choices for the drawing 2AFC task.</td></tr>
+            <tr><td>Ratings model</td><td>Shared Colab notebook</td><td><a class="button small colab" data-colab-path="anns/ratings.ipynb">Open in Colab</a></td><td>Generate model scores for image ratings.</td></tr>
+            <tr><td>N-back model</td><td>Shared Colab notebook</td><td><a class="button small colab" data-colab-path="anns/n_back.ipynb">Open in Colab</a></td><td>Generate model scores for the N-back/memorability task.</td></tr>
+            <tr><td>Extract 2AFC data</td><td>Shared Colab notebook</td><td><a class="button small colab" data-colab-path="psychophysics/extract_2afc_results.ipynb">Open in Colab</a></td><td>Clean jsPsych 2AFC CSV files.</td></tr>
+            <tr><td>Extract rating data</td><td>Shared Colab notebook</td><td><a class="button small colab" data-colab-path="psychophysics/extract_ratings.ipynb">Open in Colab</a></td><td>Clean jsPsych rating CSV files.</td></tr>
+            <tr><td>Extract N-back data</td><td>Shared Colab notebook</td><td><a class="button small colab" data-colab-path="psychophysics/extract_n_back_results.ipynb">Open in Colab</a></td><td>Clean jsPsych N-back CSV files.</td></tr>
+            <tr><td>Make 2AFC task lines</td><td>Shared Colab notebook</td><td><a class="button small colab" data-colab-path="psychophysics/make_2afc_html_lines.ipynb">Open in Colab</a></td><td>Turn metadata into editable task arrays.</td></tr>
+            <tr><td>Make rating task lines</td><td>Shared Colab notebook</td><td><a class="button small colab" data-colab-path="psychophysics/make_ratings_html_lines.ipynb">Open in Colab</a></td><td>Turn rating metadata into editable task arrays.</td></tr>
+            <tr><td>Make N-back task lines</td><td>Shared Colab notebook</td><td><a class="button small colab" data-colab-path="psychophysics/make_n_back_html_lines.ipynb">Open in Colab</a></td><td>Turn N-back metadata into editable task arrays.</td></tr>
+            <tr><td>Human vs ANN comparison</td><td>Shared Colab notebook</td><td><a class="button small colab" data-colab-path="compare_humans_vs_anns.ipynb">Open in Colab</a></td><td>Compare human behavioral results to model outputs.</td></tr>
           </tbody>
         </table>
       </div>
@@ -156,6 +170,7 @@
         <div class="card"><span class="tag amber">Human data</span><h3>Example behavioral CSVs</h3><p>Sample data files for practicing extraction and analysis.</p><div class="links"><a class="pill" href="psychophysics/data/example_data_2afc.csv">Example 2AFC data</a><a class="pill" href="psychophysics/data/all_data_ratings.csv">Ratings data</a></div></div>
         <div class="card"><span class="tag amber">Model data</span><h3>Example ANN CSVs</h3><p>Model output files used in the human-vs-ANN comparison workflow.</p><div class="links"><a class="pill" href="anns/results/example_model_obj_2afc.csv">Example model data</a></div></div>
         <div class="card"><span class="tag green">Playground</span><h3>Edit task files</h3><p>Open the temporary task playground for changing HTML files, adding images, and previewing your edits.</p><div class="links"><a class="pill" href="playground.html">Open playground</a></div></div>
+        <div class="card"><span class="tag violet">Project</span><h3>Reliability and noise</h3><p>Use the class task data and noise tutorial to explore reliability, split-half consistency, and noise-corrected interpretation.</p><div class="links"><a class="pill" href="project-reliability.html">Open project</a></div></div>
         <div class="card"><span class="tag">Help</span><h3>Stuck?</h3><p>Ask an instructor or teaching assistant. Include the page, task, or notebook name you were using and any error message you saw.</p></div>
       </div>
     </section>

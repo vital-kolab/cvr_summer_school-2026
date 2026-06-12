@@ -132,3 +132,19 @@ Please cite or acknowledge:
 **CVR Summer School 2026 Tutorial Materials, ViTA Lab, Centre for Vision Research, York University.**
 
 See `LICENSE.md` for details.
+
+
+## Class project: reliability and noise
+
+The repository now includes a class project page at `project-reliability.html`. This activity uses the behavioral performance data collected from the tutorial tasks to introduce split-half reliability and noise-corrected interpretation.
+
+Included project files:
+
+- `projects/Noise_correction_tutorial.ipynb`
+- `projects/split_half_reliability_colab.ipynb`
+- `projects/data/all_data_obj_2afc.csv`
+- `projects/data/all_data_draw_2afc.csv`
+- `projects/data/all_data_ratings.csv`
+- `projects/data/all_data_n_back.csv`
+
+Students can open the project from the homepage and launch the notebooks in Google Colab.

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CVR Summer School class project on behavioral performance, split-half reliability, noise correction, and human/model comparisons.">
+  <title>CVR Summer School 2026 | Class Project</title>
+  <link rel="stylesheet" href="assets/cvr-pages.css">
+  <script defer src="assets/cvr-pages.js"></script>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar">
+      <div class="brand brand-with-logos" aria-label="CVR Summer School branding">
+        <a href="https://www.yorku.ca/cvr/summer-school/" aria-label="Centre for Vision Research Summer School home">
+          <img class="brand-logo cvr-logo" src="assets/cvrgraphic.png" alt="Centre for Vision Research logo">
+        </a>
+        <a href="https://vista.info.yorku.ca/" aria-label="VISTA website">
+          <img class="brand-logo vista-logo" src="assets/vista-basic.jpg" alt="VISTA: Vision Science to Applications logo">
+        </a>
+        <span>Summer School 2026</span>
+      </div>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="#overview">Overview</a>
+        <a href="#data">Class data</a>
+        <a href="#notebooks">Project notebooks</a>
+        <a href="#questions">Project questions</a>
+      </nav>
+    </div>
+
+    <section class="hero" aria-labelledby="title">
+      <div class="hero-card">
+        <span class="eyebrow">Class project</span>
+        <h2 id="title">From classroom behavior to reliability, noise correction, and interpretation.</h2>
+        <p class="subtitle">In this project, students use the performance data collected from the summer school tasks and ask a deeper question: how reliable are the measured behavioral patterns, and how should we interpret correlations when measurements are noisy?</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#data">View class datasets</a>
+          <a class="button colab" data-colab-path="projects/Noise_correction_tutorial.ipynb">Open noise tutorial</a>
+          <a class="button colab" data-colab-path="projects/split_half_reliability_colab.ipynb">Open reliability analysis</a>
+        </div>
+      </div>
+      <aside class="status-card" aria-label="Project summary">
+        <h2 style="font-size:1.35rem;margin-bottom:8px;">What this project connects</h2>
+        <div class="stat"><span class="dot"></span><div><strong>Behavioral tasks</strong><span>Object 2AFC, drawing 2AFC, image ratings, and N-back memory.</span></div></div>
+        <div class="stat"><span class="dot"></span><div><strong>Class performance</strong><span>Aggregate CSV files from students who ran the tutorial tasks.</span></div></div>
+        <div class="stat"><span class="dot"></span><div><strong>Split-half reliability</strong><span>Estimate how consistently images or conditions are measured.</span></div></div>
+        <div class="stat"><span class="dot"></span><div><strong>Noise correction</strong><span>Understand why noisy measurements can reduce observed correlations.</span></div></div>
+      </aside>
+    </section>
+
+    <section id="overview">
+      <div class="section-head">
+        <h2>Project overview</h2>
+        <p class="muted">This activity turns the tutorial into a mini research project using the class's own behavioral data.</p>
+      </div>
+      <div class="workflow">
+        <div class="step"><h3>1. Run the tasks</h3><p>Students complete the browser experiments and save the downloaded CSV files.</p></div>
+        <div class="step"><h3>2. Pool performance</h3><p>The class-level CSV files are combined across participants for each task.</p></div>
+        <div class="step"><h3>3. Estimate reliability</h3><p>Repeated measurements are split into halves to ask whether the same images or conditions produce consistent patterns.</p></div>
+        <div class="step"><h3>4. Learn noise correction</h3><p>A separate simulation notebook shows how measurement noise lowers observed correlations and how reliability can help interpret them.</p></div>
+        <div class="step"><h3>5. Interpret the project</h3><p>Students discuss which behavioral measurements are stable, which are noisy, and what that means for comparing humans and models.</p></div>
+      </div>
+    </section>
+
+    <section id="concepts">
+      <div class="section-head">
+        <h2>Core idea</h2>
+        <p class="muted">A low correlation does not always mean that two systems are unrelated. Sometimes the measurement itself is noisy.</p>
+      </div>
+      <div class="grid two">
+        <article class="card">
+          <span class="tag violet">Noise tutorial</span>
+          <h3>Why correlations can shrink</h3>
+          <p>The noise correction notebook starts with variables whose true relationship is known, then adds different amounts of measurement noise. Students can see that the observed correlation drops as the measurement gets noisier.</p>
+          <p>This prepares students to interpret real behavioral and model comparisons more carefully.</p>
+        </article>
+        <article class="card">
+          <span class="tag green">Task reliability</span>
+          <h3>How consistent is the class data?</h3>
+          <p>The split-half reliability notebook uses the actual task data to ask whether different random halves of the class give similar image-level or condition-level patterns.</p>
+          <p>If the split halves agree, the measurement is stable. If they disagree, we should be cautious about over-interpreting the result.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="data">
+      <div class="section-head">
+        <h2>Class behavioral datasets</h2>
+        <p class="muted">These CSV files contain the aggregate student performance used for the reliability activity.</p>
+      </div>
+      <div class="grid four">
+        <article class="card"><span class="tag green">2AFC</span><h3>Object recognition</h3><p>Class responses from the object two-alternative forced-choice task.</p><div class="links"><a class="pill" href="projects/data/all_data_obj_2afc.csv">Download CSV <span>↓</span></a></div></article>
+        <article class="card"><span class="tag green">2AFC</span><h3>Drawing recognition</h3><p>Class responses from the drawing two-alternative forced-choice task.</p><div class="links"><a class="pill" href="projects/data/all_data_draw_2afc.csv">Download CSV <span>↓</span></a></div></article>
+        <article class="card"><span class="tag violet">Ratings</span><h3>Image ratings</h3><p>Class image-rating responses used to estimate image-level consistency.</p><div class="links"><a class="pill" href="projects/data/all_data_ratings.csv">Download CSV <span>↓</span></a></div></article>
+        <article class="card"><span class="tag amber">Memory</span><h3>N-back</h3><p>Class responses from the image memory / repetition task.</p><div class="links"><a class="pill" href="projects/data/all_data_n_back.csv">Download CSV <span>↓</span></a></div></article>
+      </div>
+      <div class="callout" style="margin-top:14px;"><strong>Tip:</strong> download the CSV files or access them from the shared Drive folder before running the reliability notebook. If you are using Colab, first add the CVR tutorial folder to your own My Drive.</div>
+    </section>
+
+    <section id="notebooks">
+      <div class="section-head">
+        <h2>Project notebooks</h2>
+        <p class="muted">Open these in Google Colab. Save a copy to your own Drive before editing.</p>
+      </div>
+      <div class="grid two">
+        <article class="card">
+          <span class="tag violet">Concept notebook</span>
+          <h3>Noise correction tutorial</h3>
+          <p>Use simulations to see how measurement noise weakens observed correlations, how split-half reliability is estimated, and how reliability can be used to correct correlations.</p>
+          <div class="links">
+            <a class="pill colab" data-colab-path="projects/Noise_correction_tutorial.ipynb">Open in Colab <span>↗</span></a>
+            <a class="pill" href="projects/Noise_correction_tutorial.ipynb">Download notebook</a>
+          </div>
+        </article>
+        <article class="card">
+          <span class="tag green">Class data notebook</span>
+          <h3>Reliability from task data</h3>
+          <p>Use the class performance CSV files to estimate split-half reliability for the behavioral tasks and ask which measurements are most stable.</p>
+          <div class="links">
+            <a class="pill colab" data-colab-path="projects/split_half_reliability_colab.ipynb">Open in Colab <span>↗</span></a>
+            <a class="pill" href="projects/split_half_reliability_colab.ipynb">Download notebook</a>
+          </div>
+        </article>
+      </div>
+      <div class="table-wrap" style="margin-top:16px;">
+        <table>
+          <thead><tr><th>Notebook</th><th>Open</th><th>Use it for</th></tr></thead>
+          <tbody>
+            <tr><td>Noise correction tutorial</td><td><a class="button small colab" data-colab-path="projects/Noise_correction_tutorial.ipynb">Open in Colab</a></td><td>Understand how noise reduces observed correlations and how reliability estimates help interpret them.</td></tr>
+            <tr><td>Reliability from task data</td><td><a class="button small colab" data-colab-path="projects/split_half_reliability_colab.ipynb">Open in Colab</a></td><td>Estimate split-half reliability from the class behavioral datasets.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="questions">
+      <div class="section-head">
+        <h2>Discussion questions</h2>
+        <p class="muted">Use these prompts for a short project presentation or group discussion.</p>
+      </div>
+      <div class="grid two">
+        <article class="card"><h3>Reliability</h3><p>Which task produced the most reliable image-level or condition-level pattern? Which task was noisiest? What might explain the difference?</p></article>
+        <article class="card"><h3>Number of repetitions</h3><p>How would reliability change if each task had more participants, more repeats, or fewer stimuli?</p></article>
+        <article class="card"><h3>Human/model comparison</h3><p>If a human-vs-ANN correlation is low, how can we tell whether the model is poor or whether the behavioral measurement is noisy?</p></article>
+        <article class="card"><h3>Experimental design</h3><p>What would you change in the task design to make the measurements more reliable?</p></article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Centre for Vision Research · Summer School 2026 · Class project<br>
+      © 2026 ViTA Lab, Centre for Vision Research, York University.
+      Educational content licensed under CC BY-NC 4.0; code and notebooks licensed under MIT.
+    </footer>
+  </main>
+</body>
+</html>

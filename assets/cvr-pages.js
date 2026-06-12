@@ -28,7 +28,9 @@ window.CVR_COLAB_DRIVE_LINKS = window.CVR_COLAB_DRIVE_LINKS || {
   "psychophysics/make_n_back_html_lines.ipynb": "https://drive.google.com/file/d/19DN10ZQJk3fAJT46wNe1nkMkmZePILpH/view?usp=sharing",
 
   "manipulate_stimuli.ipynb": "https://colab.research.google.com/drive/1ne1pm9dUGDI3A2uxQDes05BnSuj1NbSu?usp=sharing",
-  "compare_humans_vs_anns.ipynb": "https://colab.research.google.com/drive/1INIq7Z4s79Gtezc1V4LebitQXl9kXTyT?usp=sharing"
+  "compare_humans_vs_anns.ipynb": "https://colab.research.google.com/drive/1INIq7Z4s79Gtezc1V4LebitQXl9kXTyT?usp=sharing",
+  "projects/Noise_correction_tutorial.ipynb": "https://drive.google.com/file/d/1MychOJfiZAZVQdl6f7BLCAfCNwVCIXq5/view?usp=drive_link",
+  "projects/split_half_reliability_colab.ipynb": "https://drive.google.com/file/d/1Ilq0Z91jGIHgn2UZqtcAedVRC9UX19vU/view?usp=drive_link"
 };
 
 // Optional: paste your shared Drive folder URL here if you want to show/use it elsewhere.
